@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <siteMenu siteName="tangled garden"/>
+    <router-view></router-view>
     <h1>tangled garden</h1>
     <p>paragraph text <br> hi <span> I am also text</span></p>
     <!--    <HelloWorld msg="Welcome to Your Vue.js App"/> -->
@@ -8,18 +9,18 @@
 </template>
 
 <script>
-import siteMenu from './components/menu.vue';
+import siteMenu from './components/siteMenu.vue';
 
 export default {
   name: 'App',
   components: {
-  menu
+  siteMenu
   }
 }
 </script>
 
 <style lang="scss">
-
+@import "~@/scss/_preload.scss";
 @import "~@/scss/default-styles.scss";
 
 span{

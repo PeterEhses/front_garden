@@ -12,7 +12,8 @@
     "normalize.css": "^8.0.1",
     "rfs": "^9.0.2",
     "sass-lint": "^1.13.1",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue-router": "^3.1.6"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.2.0",

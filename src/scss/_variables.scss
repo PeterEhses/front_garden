@@ -13,15 +13,6 @@ $white: #FFFFFF;
 
 $outline-weight: 1px;
 
-
-// font imports
-@import url('https://fonts.googleapis.com/css?family=Cormorant+Garamond:500,500i&display=swap');
 // FONTS
-@font-face {
-  font-family: 'Terminal Grotesque Open';
-  src: url("assets/fonts/terminal-grotesqueopen.woff2") format('woff2'),
-       url("assets/fonts/terminal-grotesqueopen.woff") format('woff');
-}
-
 $font-default: 'Terminal Grotesque Open';
 $font-highlight: 'Cormorant Garamond 500';
