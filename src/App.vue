@@ -24,14 +24,14 @@ export default {
 @import "~@/scss/default-styles.scss";
 
 span{
-  @include font-highlight(2);
+  @include font-highlight(1);
 }
 
 #app {
   border: $outline-weight dashed $highlight-default;
-  width: calc(100% - 5vmin);
-  height: calc(100% - 10vmin);
-  margin: 5vmin;
+  width: calc(100% - #{$frame-constant});
+  height: calc(100% - #{$frame-constant * 2});
+  margin: $frame-constant;
   padding: 0;
   text-align: center;
   @include dot-grid();

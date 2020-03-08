@@ -22,7 +22,7 @@
     color: $color;
   }
   @if $size{
-    @include font-size($size*$size-mult);
+    @include font-size($size-mult * $size);
     line-height: 1.7*$size;
   }
 
@@ -30,11 +30,11 @@
 }
 
 @mixin font-default($font-scale: 1){
-  @include font-define('Cormorant Garamond', 500, normal, 1rem, 1, $white);
+  @include font-define('Cormorant Garamond', 500, normal, $font-scale * 1rem, $font-scale, $white);
 }
 
 @mixin font-highlight($font-scale: 1){
-  @include font-define("Terminal Grotesque Open", 500, normal, 1rem, 0.875, $white, "mono");
+  @include font-define("Terminal Grotesque Open", 500, normal, $font-scale * 1rem, $font-scale * 0.875, $white, "mono");
 }
 
 // FILLS
