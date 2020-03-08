@@ -1,0 +1,46 @@
+// DEFAULT FONT STYLE DEFINITIONS
+
+@mixin font-define($family: false, $weight: false, $style: false, $size: false, $size-mult: 1.0, $color: false, $fam-type: "serif"){
+  @if $family{
+
+    @if $fam-type == "mono" {
+      font-family: $family, monospace;
+    } @else if $fam-type == "sans" {
+      font-family: $family, sans-serif;
+    } @else {
+      font-family: $family, serif;
+    }
+  }
+
+  @if $weight{
+    font-weight: $weight;
+  }
+  @if $style{
+    font-style: $style;
+  }
+  @if $color{
+    color: $color;
+  }
+  @if $size{
+    @include font-size($size*$size-mult);
+    line-height: 1.7*$size;
+  }
+
+
+}
+
+@mixin font-default($font-scale: 1){
+  @include font-define('Cormorant Garamond', 500, normal, 1rem, 1, $white);
+}
+
+@mixin font-highlight($font-scale: 1){
+  @include font-define("Terminal Grotesque Open", 500, normal, 1rem, 0.875, $white, "mono");
+}
+
+// FILLS
+
+//dot grid background pattern
+@mixin dot-grid($size-value: 6vmin){
+  background-image: radial-gradient($highlight-default $outline-weight, transparent 0);
+  background-size: $size-value $size-value;
+}
