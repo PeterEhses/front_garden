@@ -22,15 +22,50 @@ Vue.use(VueRouter)
 
 Vue.config.productionTip = false
 
-
-const Donate = { template: '<div>donate</div>' }
-const Care = { template: '<div>care</div>' }
-const Legal = { template: '<div>legal</div>' }
-
 const routes = [
-  { path: '/donate', component: Donate },
-  { path: '/care', component: Care },
-  { path: '/datenschutz', component: Legal }
+  {
+    path: '/',
+    redirect: { path: '/home'},
+    meta: {
+        visible: false
+    }
+  },
+  {
+    path: '/home',
+    name: 'home',
+    title: "home",
+    component: () => import("./components/home.vue"),
+    meta: {
+        visible: true
+    }
+  },
+  {
+    path: '/donate',
+    name: 'donate',
+    title: "donate",
+    component: () => import("./components/donate.vue"),
+    meta: {
+        visible: true
+      }
+  },
+  {
+    path: '/care',
+    name: 'care',
+    title: "care",
+    component: () => import("./components/care.vue"),
+    meta: {
+        visible: true
+    }
+  },
+  {
+    path: '/datenschutz',
+    name: 'legal',
+    title: "datenschutz & impressum",
+    component: () => import("./components/legal.vue"),
+    meta: {
+        visible: true
+    }
+  }
 ]
 
 const router = new VueRouter({

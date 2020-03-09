@@ -2,10 +2,12 @@
 <nav id="menu" role="navigation">
   <input type="checkbox" checked/>
   <div id="menu-links">
-    <router-link to="/donate">donate</router-link>
-    <router-link to="/care">care</router-link>
-    <router-link to="/datenschutz">Impressum / GDPR</router-link>
 
+    <menu-item v-for="(r,i) in routes" :key="i" :route="r"></menu-item>
+    <!--
+    <router-link to="./care">care</router-link>
+    <router-link to="./datenschutz">Impressum / GDPR</router-link>
+  -->
   </div>
 
   <div id="sitename">
@@ -21,10 +23,19 @@
 </template>
 
 <script>
+import menuItem from "./menuItem.vue";
 export default {
   name: 'siteMenu',
+  components: {
+    menuItem
+  },
   props: {
     siteName: String
+  },
+  computed: {
+    routes() {
+      return this.$router.options.routes;
+    }
   }
 }
 </script>

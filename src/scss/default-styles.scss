@@ -20,3 +20,9 @@ body {
 h1{
   @include font-highlight(1);
 }
+
+p{
+  margin: 0;
+  @include margin-bottom(1rem);
+  @include font-default(1);
+}
