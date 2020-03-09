@@ -2,6 +2,10 @@
   font-size: 24px;
 }
 
+::selection {
+  background: $highlight-bright; /* WebKit/Blink Browsers */
+}
+
 html,
 body {
   margin: 0;
@@ -20,9 +24,31 @@ body {
 h1{
   @include font-highlight(1);
 }
+h2{
+  margin: 0 0 0.5rem 0;
+  @include font-highlight(1.2);
+  text-align: left;
+}
+h3{
+  margin: $frame-constant;
+  @include font-default(1, $text-color: $highlight-default);
+}
+
+button {
+  @include font-highlight(1.2);
+}
 
 p{
   margin: 0;
   @include margin-bottom(1rem);
   @include font-default(1);
+}
+
+a{
+  @include font-highlight(1, $text-color: $highlight-bright);
+  text-decoration: none;
+}
+
+li{
+  text-align: left;
 }

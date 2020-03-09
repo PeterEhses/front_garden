@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App.vue'
-
+import PerfectScrollbar from 'vue2-perfect-scrollbar'
+import 'vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css'
 
 // CSS FIX
 
@@ -17,7 +18,7 @@ window.onresize = vhFix;
 
 // VUE
 
-
+Vue.use(PerfectScrollbar)
 Vue.use(VueRouter)
 
 Vue.config.productionTip = false

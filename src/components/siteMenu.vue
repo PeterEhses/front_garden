@@ -40,8 +40,12 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #menu {
+  pointer-events: none;
+  & > * {
+    pointer-events: auto;
+  }
     width: 100vh;
     /* Fallback for browsers that do not support Custom Properties */
     width: calc(var(--vh, 1vh) * 100);
@@ -54,6 +58,8 @@ export default {
     transform-origin: left top;
 
     transform: rotate(-90deg) translateX(-100%); // rotate & push down
+
+    z-index: 90001;
 
     input {
         display: block;
@@ -95,6 +101,7 @@ export default {
 }
 
 #sitename {
+
     display: flex;
     align-items: center;
     height: $frame-constant*0.82;
@@ -124,5 +131,9 @@ export default {
         line-height: 0.7*$frame-constant;
     }
     transition: $transition-constant;
+}
+
+.text-success{
+  color: $highlight-default !important;
 }
 </style>

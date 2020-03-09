@@ -1,10 +1,18 @@
 <template>
- <h2>donate</h2>
+  <div id="donate">
+    <p>Please donate 3 pieces of data.</p>
+    <p>You can also forward emails to <a href="mailto:donate@tangled.garden">donate@tangled.garden</a> or use the scanner device.</p>
+    <donation-form />
+  </div>
 </template>
 
 <script>
+import donationForm from './donationForm.vue';
 export default {
-  name: "donate"
+  name: "donate",
+  components: {
+    "donation-form": donationForm
+  }
 }
 </script>
 
