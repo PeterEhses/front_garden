@@ -21,6 +21,14 @@ window.onresize = vhFix;
 //Vue.use(PerfectScrollbar)
 Vue.use(VueRouter)
 
+
+
+Vue.filter('kb', val => {
+  return Math.floor(val/1024);
+});
+
+
+
 Vue.config.productionTip = false
 
 const routes = [

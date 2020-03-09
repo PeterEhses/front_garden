@@ -132,7 +132,7 @@ export default {
             border: $outline-weight solid $white;
             border-radius: 1000px;
         }
-        transform: translateY(0.5vmin);
+        // transform: translateY(0vmin);
     }
 
     h1 {
