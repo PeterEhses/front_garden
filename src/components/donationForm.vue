@@ -1,7 +1,6 @@
 <template>
   <form id="donationForm">
-    <p class="small">Please donate 3 pieces of data</p>
-    <p class="small">You can also forward emails to <a href="mailto:donate@tangled.garden">donate@tangled.garden</a> or use the scanner device.</p>
+    <p class="small">Select any text and image files</p>
     <h2>Data</h2>
 
     <v-dragdrop>tap or drag&drop here to donate text or images</v-dragdrop>

@@ -1,6 +1,6 @@
 <template>
 <nav id="menu" role="navigation">
-  <input type="checkbox" checked/>
+  <input type="checkbox" v-model="checked"/>
   <div id="menu-links">
 
     <menu-item v-for="(r,i) in routes" :key="i" :route="r"></menu-item>
@@ -32,9 +32,20 @@ export default {
   props: {
     siteName: String
   },
+  data: function () {
+    return {
+      checked: true
+    }
+
+  },
   computed: {
     routes() {
       return this.$router.options.routes;
+    }
+  },
+  methods: {
+    close: function() {
+      this.checked = true;
     }
   }
 }

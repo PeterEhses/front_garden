@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App.vue'
-import PerfectScrollbar from 'vue2-perfect-scrollbar'
-import 'vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css'
+//import PerfectScrollbar from 'vue2-perfect-scrollbar'
+//import 'vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css'
 
 // CSS FIX
 
@@ -18,7 +18,7 @@ window.onresize = vhFix;
 
 // VUE
 
-Vue.use(PerfectScrollbar)
+//Vue.use(PerfectScrollbar)
 Vue.use(VueRouter)
 
 Vue.config.productionTip = false
@@ -73,8 +73,7 @@ const router = new VueRouter({
   routes // short for `routes: routes`
 })
 
-
 new Vue({
-  router,
+  router, // app watches for route change & resets scroll of scroll container!!!! needs change if keep position is desired!
   render: h => h(App),
 }).$mount('#app')

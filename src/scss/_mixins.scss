@@ -23,7 +23,7 @@
   }
   @if $size{
     @include font-size($size-mult * $size);
-    line-height: 1.5*$size;
+    line-height: 1.22*$size;
   }
 
 

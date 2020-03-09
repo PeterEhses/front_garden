@@ -1,23 +1,31 @@
 <template>
   <div id="app">
-    <div id="popout">
-      <perfect-scrollbar v-bind:options="{
-        suppressScrollX: true
-      }">
+    <div id="popout" ref="scroller">
+
         <router-view></router-view>
-      </perfect-scrollbar>
+
     </div>
-    <siteMenu siteName="tangled garden"/>
+    <siteMenu siteName="tangled garden" ref="menu"/>
   </div>
 </template>
 
 <script>
 import siteMenu from './components/siteMenu.vue';
+
 export default {
   name: 'App',
   components: {
   siteMenu
-  }
+},
+watch:{
+    $route (){
+        this.$refs.menu.close();
+        let element = document.getElementById("popout");
+        if (element !== null) {
+          element.scrollTo(0,0);
+        }
+    }
+}
 }
 </script>
 
@@ -34,7 +42,7 @@ export default {
   margin: $frame-constant;
   padding: 0;
   text-align: center;
-  @include dot-grid();
+  // @include dot-grid();
 }
 #popout {
   position: relative;
@@ -42,6 +50,7 @@ export default {
   height: 100%;
   height: calc(100% + #{$frame-constant / 2});
   padding: $frame-constant*1.5 0 0 $frame-constant/2;
+  overflow-x: hidden;
   overflow-y: auto;
   &:after{ // dumb fix fore firefox that ignores trailing padding in :scroll
     content: "";
@@ -49,7 +58,7 @@ export default {
     height: $frame-constant*1.5;
 
   }
-  & > * > *{
+  & > * {
     margin-right: $frame-constant/2;
   }
 }

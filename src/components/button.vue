@@ -48,7 +48,7 @@ export default {
   width: 50vw;
   margin: 0;
   left: 50%;
-  transform: translateY(0.865rem); // magic number. not responsive to button font size
+  transform: translateY(0.75rem); // magic number. not responsive to button font size
   }
 }
 
