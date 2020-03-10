@@ -1,7 +1,7 @@
 <template>
   <div class="button-wrapper" :class="{'bottom-right':bottomright}">
-    <hr v-if="line">
-    <button @click="onClick" class="v-button" :disabled="disabled">
+    <hr v-if="line" :style="bHeight">
+    <button  ref="button" @click="onClick" class="v-button" :disabled="disabled">
       <slot>Button</slot>
     </button>
   </div>
@@ -18,6 +18,19 @@ export default {
       type: Function,
       required: true
     }
+  },
+  data: function () {
+    return{
+      bHeight: {transform: "translateY(0.75rem)"}
+    }
+  },
+  methods: {
+    getBHeight: function() {
+      //console.log(this.$refs.button.offsetHeight);
+      this.$data.bHeight = {transform: 'translateY('+this.$refs.button.offsetHeight/2+'px)'};
+    }
+  }, mounted() {
+    this.getBHeight();
   }
 }
 </script>
@@ -29,6 +42,7 @@ export default {
   border-radius: 100000px;
   color: $white;
   padding: 0 0.7rem;
+  margin-bottom: 0.5rem;
   &:hover{
     background-color: $highlight-selected;
   }
@@ -48,7 +62,7 @@ export default {
   width: 50vw;
   margin: 0;
   left: 50%;
-  transform: translateY(0.75rem); // magic number. not responsive to button font size
+  //transform: translateY(0.75rem); // 0.75rem magic number. not responsive to button font size
   }
 }
 

@@ -1,13 +1,11 @@
 <template>
- <div id="care">
-   <router-view></router-view>
- </div>
+  <div class="gallery">
+    <p>gallery boiiii</p>
+  </div>
 </template>
 
 <script>
-
 export default {
-  name: "care"
 }
 </script>
 

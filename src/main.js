@@ -59,12 +59,38 @@ const routes = [
   },
   {
     path: '/care',
-    name: 'care',
-    title: "care",
     component: () => import("./components/care.vue"),
     meta: {
-        visible: true
-    }
+        visible: false
+    },
+    children: [
+      {
+        path:"",
+        name:"care",
+        title: "care",
+        meta: {
+            visible: true
+        },
+        component: () => import("./components/careSelect.vue")
+      },
+      {
+        path:"breed",
+        name:"breed",
+        component: () => import("./components/careGallery.vue")
+      },
+      {
+        path:"name",
+        name:"name"
+      },
+      {
+        path:"want",
+        name:"want"
+      },
+      {
+        path:"decompose",
+        name:"decompose"
+      }
+    ]
   },
   {
     path: '/datenschutz',

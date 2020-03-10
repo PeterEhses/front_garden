@@ -40,7 +40,14 @@ export default {
   },
   computed: {
     routes() {
-      return this.$router.options.routes;
+      let routes = [];
+      for(let route of this.$router.options.routes){
+        routes.push(route);
+        if(route.children){
+          routes = routes.concat(route.children);
+        }
+      }
+      return routes;
     }
   },
   methods: {
