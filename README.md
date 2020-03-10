@@ -23,25 +23,3 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
-
-
-
-## file structure
-```
-root
-|
-|index.html
-|
-|\css
-||
-||compiled .css
-||working files .scss
-||
-|\js
-||
-||scripts
-||\lib
-|||  
-|||external resources
-
-```
