@@ -1,11 +1,11 @@
 <template>
-  <form id="donationForm">
-    <p class="small">Select any text and image files</p>
+  <form id="donationForm" onsubmit="return false;">
+    <legend class="small">Select any text and image files</legend>
     <h2>Data</h2>
 
-    <v-dragdrop>tap or drag&drop here to donate text or images</v-dragdrop>
-    <p class="small">after reviewing your data, plant it as a new seed</p>
-    <v-button v-bind:onClick="submitForm" bottomright line disabled>plant this seed</v-button>
+    <v-dragdrop ref="dragdrop">tap or drag&drop here to donate text or images</v-dragdrop>
+    <legend class="small">after reviewing your data, plant it as a new seed</legend>
+    <v-button v-bind:onClick="submitForm" bottomright line>plant this seed</v-button>
   </form>
 </template>
 
@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     submitForm(){
-
+      this.$refs.dragdrop.upload();
     }
   }
 }
@@ -37,6 +37,7 @@ export default {
   background-color: $bg-dark;
 }
 .small{
+  display: inline-block;
   @include font-default(0.8);
   line-height: 1.3;
   margin: 0;
