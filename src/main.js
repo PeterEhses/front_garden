@@ -1,6 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App.vue'
+
+//LAZYLOADING, AJAX
+import VueLazyload from 'vue-lazyload'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+
 //import PerfectScrollbar from 'vue2-perfect-scrollbar'
 //import 'vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css'
 
@@ -20,8 +26,8 @@ window.onresize = vhFix;
 
 //Vue.use(PerfectScrollbar)
 Vue.use(VueRouter)
-
-
+Vue.use(VueLazyload)
+Vue.use(VueAxios, axios)
 
 Vue.filter('kb', val => {
   return Math.floor(val/1024);

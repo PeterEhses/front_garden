@@ -19,8 +19,8 @@ export default {
   components: {
     "v-button" : Button,
   }, methods: {
-    dud(){
-      return;
+    dud() {
+      this.$router.push({ path: 'breed' })
     }
   }
 }

@@ -4,12 +4,16 @@
       <h3><slot>drag & drop</slot></h3>
     </label>
     <input type="file" accept="image/*,text/*" id="fileselect" name="fileselect[]" multiple="multiple" @change="addFile"/>
+
+    <output> {{response}} </output>
+
     <ul class="file-display">
       <li v-for="file in files" :key="file.id">
         {{ file.name }} ({{ file.size | kb }} kb) <button @click="removeFile(file)" title="Remove">X</button>
       </li>
     </ul>
     <p class="warning " v-bind:class="{ hidden: hideWarn }">Some files could not be loaded. Did you choose only image and text files?</p>
+
   </fieldset>
 
 </template>
@@ -20,7 +24,8 @@ export default {
   data: function() {
     return{
       files:[],
-      hideWarn: true
+      hideWarn: true,
+      response: " "
     }
 
   },
@@ -48,30 +53,38 @@ export default {
         return f != file;
       });
     },
+    uploadSucc() {
+      this.files = [];
+      this.response = "upload successful"
+    },
+    uploadFail() {
+      this.response = "something went wrong"
+    },
     upload() {
-
+      let self = this;
       let formData = new FormData();
-      this.files.forEach((f,x) => {
-        formData.append('file'+(x+1), f);
+      this.files.forEach((f) => {
+        formData.append("image_file", f);
       });
-
-      let request = new XMLHttpRequest();
-
-      request.onload = function(){
-        if(this.readyState == this.DONE) {
-    console.log(request.getResponseHeader("Content-Type"));
-    console.log(request.response);
-  }
-      }
-      const proxyurl = "https://cors-anywhere.herokuapp.com/"; // for cors policy error
-      const url = "https://tangled.garden/api/texts";
-      request.open("POST", proxyurl+url);
-      request.send(formData);
-
+      this.response = "working on it"
+      this.axios.post( 'https://tangled.garden/api/images/?format=api', // does this really need axios? would be nicer standalone using xhttprequest...
+        formData,
+        {
+          headers: {
+              'Content-Type': 'multipart/form-data'
+          }
+        }
+      ).then(function(response){
+        console.log(response);
+        self.uploadSucc()
+      })
+      .catch(function(){
+        self.uploadFail()
+      });
     },
     isFileType(file) {
       let fileType = file && file['type'].split('/')[0];
-      if(fileType === 'image' || fileType === 'text'){
+      if(fileType === 'image'){ //  || fileType === 'text'
         return true;
       } else {
         return false;
@@ -107,5 +120,11 @@ export default {
 }
 .file-display{
   @include font-default(0.8);
+}
+ul{
+  padding: 0;
+}
+li{
+  list-style: none;
 }
 </style>

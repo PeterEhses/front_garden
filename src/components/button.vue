@@ -60,6 +60,7 @@ export default {
   display: block;
   position: absolute;
   width: 50vw;
+  top: 10%;
   margin: 0;
   left: 50%;
   //transform: translateY(0.75rem); // 0.75rem magic number. not responsive to button font size
