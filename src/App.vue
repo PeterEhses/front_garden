@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div id="popout" ref="scroller">
+    <div class="popout" ref="scroller">
 
         <router-view></router-view>
 
@@ -44,7 +44,7 @@ watch:{
   text-align: center;
   // @include dot-grid();
 }
-#popout {
+.popout {
   position: relative;
   top: -$frame-constant;
   height: 100%;

@@ -1,5 +1,6 @@
 <template>
   <div class="careSelect">
+    <h2>all these lead to the gallery right now! <br>all these lead to the gallery right now! <br>all these lead to the gallery right now! <br>all these lead to the gallery right now! <br></h2>
     <p>The Garden of Tangled Data cares for data.</p>
     <p>You are the gardener. </p>
 

@@ -14,9 +14,13 @@
 
     <h1>{{ siteName }}</h1>
     <div id="threeDots">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span v-for="(r,i) in routes" :key="i" :class="[(r.meta && r.meta.visible) ? 'visible' : 'hidden']">
+        <div class="menuitemactivedot" v-if="r.name == activerouteStart">
+          <div class="inside">
+
+          </div>
+        </div>
+      </span>
     </div>
   </div>
 </nav>
@@ -34,11 +38,17 @@ export default {
   },
   data: function () {
     return {
-      checked: true
+      checked: true,
+      activeroute: this.$router.currentRoute.path
     }
 
   },
   computed: {
+    activerouteStart(){
+      let str = this.activeroute;
+      return str.split("/")[1]
+    },
+
     routes() {
       let routes = [];
       for(let route of this.$router.options.routes){
@@ -47,7 +57,13 @@ export default {
           routes = routes.concat(route.children);
         }
       }
+
       return routes;
+    }
+  },
+  watch: {
+    $route(){
+      this.activeroute = this.$router.currentRoute.path
     }
   },
   methods: {
@@ -138,6 +154,26 @@ export default {
             margin: 0 0.5vmin;
             border: $outline-weight solid $white;
             border-radius: 1000px;
+
+            .menuitemactivedot{
+              box-sizing: border-box;
+              position: absolute;
+              top: 25%;
+              left: 25%;
+              width: 50%;
+              height: 50%;
+              background: $highlight-default;
+              border-radius: 12345px;
+              .inside{
+                box-sizing: border-box;
+                height: $outline-weight;
+                width: 50%;
+                position: absolute;
+                top: 50%;
+                left: -50%;
+                background: $white;
+              }
+            }
         }
         // transform: translateY(0vmin);
     }
@@ -153,5 +189,9 @@ export default {
 
 .text-success{
   color: $highlight-default !important;
+}
+
+.hidden{
+  display: none !important;
 }
 </style>

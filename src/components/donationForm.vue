@@ -36,10 +36,5 @@ export default {
   padding-bottom: $frame-constant*3.5;
   background-color: $bg-dark;
 }
-.small{
-  display: inline-block;
-  @include font-default(0.8);
-  line-height: 1.3;
-  margin: 0;
-}
+
 </style>

@@ -74,6 +74,15 @@ output{
   margin: 0;
 }
 
+:focus {outline:none;}
+
 .hidden{
   display: none;
+}
+
+.small{
+  display: inline-block;
+  @include font-default(0.8);
+  line-height: 1.3;
+  margin: 0;
 }
