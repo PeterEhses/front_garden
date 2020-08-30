@@ -87,6 +87,7 @@ export default {
 }
 
 .infos{
+  position: relative;
   flex-grow: 1;
   flex-basis: 50%;
   max-width: 100%;
