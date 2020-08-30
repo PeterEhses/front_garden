@@ -22,12 +22,22 @@ vhFix();
 window.onresize = vhFix;
 
 
-// VUE
-
-//Vue.use(PerfectScrollbar)
 Vue.use(VueRouter)
 Vue.use(VueLazyload)
 Vue.use(VueAxios, axios)
+
+// declare api interaction variables and some shared processing
+Vue.prototype.$gardenApi= {
+  garden: 2,
+  imagesPath:'https://tangled.garden/api/images/',
+  seedsPath: '',
+  format: 'format=api',
+  getPath: function(path){
+    path += "?"
+    path += this.format
+    return path
+  }
+}
 
 Vue.filter('kb', val => {
   return Math.floor(val/1024);
@@ -113,7 +123,8 @@ const router = new VueRouter({
   routes // short for `routes: routes`
 })
 
-new Vue({
+let vue = new Vue({
   router, // app watches for route change & resets scroll of scroll container!!!! needs change if keep position is desired!
   render: h => h(App),
 }).$mount('#app')
+console.log(vue.$gardenApi)

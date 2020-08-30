@@ -1,9 +1,9 @@
 <template>
   <form id="donationForm" onsubmit="return false;">
-    <legend class="small">Select any text and image files</legend>
+    <legend class="small">Select any image files</legend>
     <h2>Data</h2>
 
-    <v-dragdrop ref="dragdrop">tap or drag&drop here to donate text or images</v-dragdrop>
+    <v-dragdrop ref="dragdrop">tap here to donate images</v-dragdrop>
     <legend class="small">after reviewing your data, plant it as a new seed</legend>
     <v-button v-bind:onClick="submitForm" bottomright line>plant this seed</v-button>
   </form>

@@ -66,8 +66,9 @@ export default {
       this.files.forEach((f) => {
         formData.append("image_file", f);
       });
+      formData.append('garden', this.$gardenApi.garden)
       this.response = "working on it"
-      this.axios.post( 'https://tangled.garden/api/images/?format=api', // does this really need axios? would be nicer standalone using xhttprequest...
+      this.axios.post( this.$gardenApi.getPath(this.$gardenApi.imagesPath), // does this really need axios? would be nicer standalone using xhttprequest...
         formData,
         {
           headers: {

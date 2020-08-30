@@ -108,8 +108,11 @@ export default {
     arrayToObject(arr){
       let obj = {}
       for(let i = 0; i < arr.length; i++){
-        arr[i].breeding = false;
-        obj[arr[i].uuid] = arr[i]
+        if(arr[i].garden == this.$gardenApi.garden){
+          arr[i].breeding = false;
+          obj[arr[i].uuid] = arr[i]
+        }
+
       }
       return obj
     },

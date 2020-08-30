@@ -3,7 +3,7 @@
   <div class="type">
     <clock-outline :class="type == 'created_at' ? 'selected' : null" @click="updateType('created_at')"/>
     <bank-outline :class="type == 'original_created_at' ? 'selected' : null" @click="updateType('original_created_at')"/>
-    <key-outline :class="type == 'uuid' ? 'selected' : null" @click="updateType('uuid')"/>
+    <!-- <key-outline :class="type == 'uuid' ? 'selected' : null" @click="updateType('uuid')"/> -->
     <chart-sankey-variant :class="type == 'generation' ? 'selected' : null" @click="updateType('generation')"/>
 
 
