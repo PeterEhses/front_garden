@@ -18,14 +18,22 @@
 // webkit
 *::-webkit-scrollbar {
   width: 12px;
+  height: 12px;
 }
 *::-webkit-scrollbar-track {
-  background: none;
+  background: $bg-dark;
 }
 *::-webkit-scrollbar-thumb {
   background-color: $highlight-default;
-  border-radius: 20px;
+  border-radius: 12345px;
   border: 3px solid $bg-dark;
+}
+*::-webkit-scrollbar-corner{
+  display: none;
+}
+
+*::-webkit-resizer{
+  display: none;
 }
 
 /*general*/
@@ -57,6 +65,10 @@ h2{
 h3{
   margin: $frame-constant;
   @include font-default(1, $text-color: $highlight-default);
+}
+
+img{
+  background: $bg-dark;
 }
 
 button {
