@@ -1,15 +1,25 @@
 <template>
   <div class="singlegalleryinner" v-on:click.stop="$emit('childclick')">
     <img :src="image.image_file" alt="" :class="imagefullscreen ? 'imagefullscreen' : null" @click="imagefullscreen = !imagefullscreen">
-    <div v-if="imagefullscreen" class="darkoverlay"></div>
+    <div v-if="imagefullscreen" class="darkoverlay" @click="imagefullscreen = !imagefullscreen"></div>
     <img v-if="imagefullscreen" :src="image.image_file" alt="" :style="{opacity: 0}">
+    <div class="infos">
+      <JsonTable :srcjson="image"/>
+    </div>
+    <div class="selectables">
+
+    </div>
     {{imagefullscreen}}
 
   </div>
 </template>
 
 <script>
+import JsonTable from '@/components/JsonTable.vue';
 export default {
+  components: {
+    JsonTable
+  },
   props: {
     image: {
       type: Object
@@ -54,8 +64,13 @@ export default {
   transform: translate(-50%, -50%);
 }
 .singlegalleryinner{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: stretch;
+
+
   position: relative;
-  flex-grow: 1;
   box-sizing: border-box;
   padding: 1em;
   margin-bottom: 12.4vmin;
@@ -69,6 +84,20 @@ export default {
     overflow: hidden;
     border-radius: 0 0 $frame-constant*2 0;
   }
+}
+
+.infos{
+  flex-grow: 1;
+  flex-basis: 50%;
+  max-width: 100%;
+  max-height: 50vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+}
+
+.selectables{
+  flex-basis: 100%;
 }
 
 @media (max-width: 800px){

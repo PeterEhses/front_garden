@@ -110,6 +110,12 @@ export default {
       for(let i = 0; i < arr.length; i++){
         if(arr[i].garden == this.$gardenApi.garden){
           arr[i].breeding = false;
+          if(arr[i].metadata !== null && typeof(arr[i].metadata === 'string')){
+            let md = arr[i].metadata
+            md = md.replace(/\\x/g, '').replace(/"/g, '`').replace(/'/g, '"');
+            md = JSON.parse(md)
+             arr[i].metadata = md
+          }
           obj[arr[i].uuid] = arr[i]
         }
 

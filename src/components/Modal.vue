@@ -1,8 +1,12 @@
 <template>
 <div class="modal" @click="$emit('click')">
+  <div class="filter">
+
+  </div>
   <div class="backdrop">
 
   </div>
+
   <div class="modal-inner">
     <slot>something went wrong</slot>
   </div>
@@ -51,7 +55,16 @@ import Close from 'vue-material-design-icons/Close.vue';
   box-sizing: border-box;
 
 }
+.filter{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(.4em);
+}
 .backdrop{
+
   z-index: 0;
   position: fixed;
   top: 0;
