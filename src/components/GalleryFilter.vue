@@ -20,13 +20,13 @@
 // https://materialdesignicons.com/
 // https://www.npmjs.com/package/vue-material-design-icons
 import ArrowDown from 'vue-material-design-icons/ArrowDown.vue';
-import KeyOutline from 'vue-material-design-icons/KeyOutline.vue';
+//import KeyOutline from 'vue-material-design-icons/KeyOutline.vue';
 import ChartSankeyVariant from 'vue-material-design-icons/ChartSankeyVariant.vue';
 import BankOutline from 'vue-material-design-icons/BankOutline.vue';
 import ClockOutline from 'vue-material-design-icons/ClockOutline.vue';
 export default {
   components: {
-    KeyOutline,
+    //KeyOutline,
     ArrowDown,
     ChartSankeyVariant,
     BankOutline,

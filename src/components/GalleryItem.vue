@@ -12,9 +12,7 @@
 
       </div>
       <Modal v-if="modal" @click="clicked">
-        <div class="testo">
-
-        </div>
+        <SingleGalleryItemModalInner :image="image"/>
       </Modal>
   </div>
 </template>
@@ -23,12 +21,14 @@
 import Modal from '@/components/Modal.vue'
 import VectorCombine from 'vue-material-design-icons/VectorCombine.vue';
 import Check from 'vue-material-design-icons/Check.vue';
+import SingleGalleryItemModalInner from '@/components/SingleGalleryItemModalInner.vue'
 export default {
   name: "GalleryItem",
   components: {
     Modal,
     VectorCombine,
-    Check
+    Check,
+    SingleGalleryItemModalInner
   },
   props: {
     image: {
@@ -86,12 +86,6 @@ export default {
   content: "";
  display: block;
   padding-bottom: 100%;
-}
-
-.testo{
-  width: 100%;
-  height: 100%;
-  background: blue;
 }
 
 .button-overlay{
