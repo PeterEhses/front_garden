@@ -108,6 +108,7 @@ export default {
   max-width: 100%;
 }
 .breeder-image{
+  background-color: $bg-dark;
   border: $outline-weight solid $highlight-default;
   position: relative;
   border-radius: 12345px;
@@ -121,6 +122,7 @@ export default {
   background-position: center;
 
   img{
+    background: none;
     display:block;
     height:100%;
     width:auto;

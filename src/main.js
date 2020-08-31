@@ -29,11 +29,13 @@ Vue.use(VueAxios, axios)
 // declare api interaction variables and some shared processing
 Vue.prototype.$gardenApi= {
   garden: 1,
-  imagesPath:'https://tangled.garden/api/images/',
-  seedsPath: '',
+  basePath: 'https://tangled.garden/api',
+  imagesPath:'/images',
+  seedsPath: '/seeds',
   format: 'format=api',
   getPath: function(path){
-    path += "?"
+    path = this.basePath + path
+    path += "/?"
     path += this.format
     return path
   }

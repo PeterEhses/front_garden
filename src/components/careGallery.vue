@@ -30,7 +30,7 @@ export default {
     return{
       responseJson: {},
       requestType: "created_at",
-      requestDirection: false,
+      requestDirection: true,
       toBreed: {}
     }
 
@@ -61,12 +61,13 @@ export default {
       generation += 1;
 
       formData.append('generation', generation)
-      for (var pair of formData.entries()) {
-          console.log(pair[0]+ ', ' + pair[1]);
-      }
+      formData.append('garden', this.$gardenApi.garden)
+      // for (var pair of formData.entries()) {
+      //     console.log(pair[0]+ ', ' + pair[1]);
+      // }
       this.axios.post(
 //'https://fuckthislol.free.beeceptor.com/',
-'https://tangled.garden/api/seeds/?format=api',
+this.$gardenApi.getPath(this.$gardenApi.seedsPath),
         formData,
         {
           headers: {
@@ -83,7 +84,6 @@ export default {
       .catch(function(e){
         console.error('breed POST fail', e)
         alert("Something went wrong with breeding.")
-      self.uploadFail()
       });
     },
     changeBreed(e){

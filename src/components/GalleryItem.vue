@@ -12,7 +12,7 @@
 
       </div>
       <Modal v-if="modal" @click="clicked">
-        <SingleGalleryItemModalInner :image="image"/>
+        <SingleGalleryItemModalInner :image="image" :nameItem="nameItem" :tagItem="tagItem" :decayIcon="decayIcon" :breeding="breeding"/>
       </Modal>
   </div>
 </template>
@@ -34,7 +34,31 @@ export default {
     image: {
       type: Object
     },
+    /**
+    * display breeding dialog on image thumbnail
+    */
     breeding: {
+      type: Boolean,
+      default: true
+    },
+    /**
+    * display name dialog on image modal
+    */
+    nameItem: {
+      type: Boolean,
+      default: true
+    },
+    /**
+    * display tag dialog on image modal
+    */
+    tagItem: {
+      type: Boolean,
+      default: true
+    },
+    /**
+    * display decay dialog on image modal
+    */
+    decayIcon: {
       type: Boolean,
       default: true
     }

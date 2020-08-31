@@ -162,6 +162,18 @@ table{
   margin: 0;
 }
 
+label{
+  display: inline-block;
+  @include font-highlight(1);
+  width: 100%;
+}
+input[type='text']{
+  @include font-default(1, $black);
+  border: none;
+  border-bottom: $outline-weight*3 solid $highlight-default;
+  border-radius: $outline-weight*6;
+}
+
 @media (max-width: 800px){
   table{
     font-size: 9px;

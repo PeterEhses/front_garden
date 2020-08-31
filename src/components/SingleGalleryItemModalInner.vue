@@ -7,22 +7,57 @@
       <JsonTable :srcjson="image"/>
     </div>
     <div class="selectables">
-
+        <NameItem v-if="nameItem" :name="image.name"/>
+        <NameItem v-if="nameItem" :name="image.name"/>
     </div>
-    {{imagefullscreen}}
+
 
   </div>
 </template>
 
 <script>
 import JsonTable from '@/components/JsonTable.vue';
+import NameItem from '@/components/NameItem.vue';
 export default {
   components: {
-    JsonTable
+    JsonTable,
+    NameItem,
   },
   props: {
+    /**
+    *  image object, should contain all data needed
+    */
     image: {
-      type: Object
+      type: Object,
+      required: true
+    },
+    /**
+    * display breeding select on image modal
+    */
+    breeding: {
+      type: Boolean,
+      default: true
+    },
+    /**
+    * display name dialog on image modal
+    */
+    nameItem: {
+      type: Boolean,
+      default: true
+    },
+    /**
+    * display tag dialog on image modal
+    */
+    tagItem: {
+      type: Boolean,
+      default: true
+    },
+    /**
+    * display decay dialog on image modal
+    */
+    decayIcon: {
+      type: Boolean,
+      default: true
     }
   },
   data(){
@@ -34,7 +69,7 @@ export default {
 
   },
   mounted(){
-    console.dir(this)
+    //console.dir(this)
   }
 }
 </script>
@@ -79,8 +114,10 @@ export default {
   //border: 1px solid blue;
   //background: blue;
   img{
-    max-width: 100%;
+    max-width: 50%;
     max-height: 50vh;
+    object-fit: contain;
+    align-self: center;
     overflow: hidden;
     border-radius: 0 0 $frame-constant*2 0;
   }
@@ -99,11 +136,26 @@ export default {
 
 .selectables{
   flex-basis: 100%;
+  padding: 1em;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 @media (max-width: 800px){
+  .selectables{
+    padding: 0;
+  }
+
+  .infos{
+    order: 9001;
+    flex-basis: 100%;
+  }
   .singlegalleryinner{
     margin-bottom: 14vmin;
+    img{
+      max-width: 100%;
+      align-self: stretch;
+    }
   }
 }
 </style>

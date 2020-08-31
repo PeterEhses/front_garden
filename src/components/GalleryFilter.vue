@@ -9,7 +9,7 @@
 
   </div>
   <div class="direction">
-    <arrow-down :class="direction ? 'invert' : null" @click="updateDirection()"/>
+    <arrow-down :class="direction ? null : 'invert'" @click="updateDirection()"/>
   </div>
 
 </div>

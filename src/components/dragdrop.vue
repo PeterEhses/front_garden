@@ -3,7 +3,8 @@
     <label for="fileselect" class="drag-drop"  v-cloak @drop.prevent="addFile" @dragover.prevent>
       <h3><slot>drag & drop</slot></h3>
     </label>
-    <input type="file" accept="image/*,text/*" id="fileselect" name="fileselect[]" multiple="multiple" @change="addFile"/>
+    <input type="file" accept="image/*" id="fileselect" name="fileselect[]"  @change="addFile"/>
+    <!-- multiple="multiple" to re-enable multiple file select-->
 
     <output> {{response}} </output>
 

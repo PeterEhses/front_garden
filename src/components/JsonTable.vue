@@ -10,7 +10,8 @@
           </tr> -->
           <JsonTable :srcjson="info"/>
         </table>
-      <td v-else class="content" v-html="info || '<em>null</em>'">
+      <td v-else class="content" v-html="String(info) || '<em>empty</em>'">
+        <!-- String(info) || info || '<em>empty</em>' to show empty arrays as [] -->
       </td>
     </tr>
   </table>
@@ -21,12 +22,11 @@ export default {
   name: "JsonTable",
   props: {
     srcjson: {
-      type: Object
     }
   },
 
   mounted(){
-    console.dir(this.srcjson)
+    //console.dir(this.srcjson)
   }
 }
 </script>
