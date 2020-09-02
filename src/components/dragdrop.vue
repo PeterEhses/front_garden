@@ -10,7 +10,7 @@
 
     <ul class="file-display">
       <li v-for="(file, id) in files" :key="id">
-        {{ file.name }} ({{ file.size | kb }} kb) <button @click="removeFile(file)" title="Remove">X</button> <img :src="file.reader.result" alt="">
+        {{ file.name }} ({{ file.size | kb }} kb) <img :src="file.datauri" alt=""> <button @click="removeFile(file)" title="Remove">X</button>
 
       </li>
     </ul>
@@ -38,6 +38,7 @@ export default {
   },
   methods:{
     addFile(e) {
+      let _this = this;
       let droppedFiles = e.target.files || e.dataTransfer.files;
       if(!droppedFiles) return;
       // this tip, convert FileList to array, credit: https://www.smashingmagazine.com/2018/01/drag-drop-file-uploader-vanilla-js/
@@ -46,8 +47,9 @@ export default {
         if(this.isFileType(f)){
           f.reader = new FileReader();
           f.reader.readAsDataURL(f)
+          f.datauri = "boi"
+          f.reader.onload = e => {f.datauri = e.target.result; _this.files.splice(0,0)}; // super hacky. splice nothing to activate vue wrapper to force reactive behaviour
           this.files.push(f);
-          console.log(f)
         } else {
           this.hideWarn = false;
         }
@@ -135,11 +137,20 @@ export default {
 }
 .file-display{
   @include font-default(0.8);
+  line-break: anywhere;
+  img{
+    border: $outline-weight solid $highlight-default;
+    border-radius: 12345px;
+    position: relative;
+    top: 1em;
+    height: 2.4em;
+  }
 }
 ul{
   padding: 0;
 }
 li{
   list-style: none;
+  line-break: anywhere;
 }
 </style>
