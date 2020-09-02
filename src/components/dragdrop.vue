@@ -3,14 +3,15 @@
     <label for="fileselect" class="drag-drop"  v-cloak @drop.prevent="addFile" @dragover.prevent>
       <h3><slot>drag & drop</slot></h3>
     </label>
-    <input type="file" accept="image/*" id="fileselect" name="fileselect[]"  @change="addFile"/>
+    <input type="file" accept="image/*" id="fileselect" name="fileselect[]"  @change="addFile"  multiple="multiple"/>
     <!-- multiple="multiple" to re-enable multiple file select-->
 
     <output> {{response}} </output>
 
     <ul class="file-display">
-      <li v-for="file in files" :key="file.id">
-        {{ file.name }} ({{ file.size | kb }} kb) <button @click="removeFile(file)" title="Remove">X</button>
+      <li v-for="(file, id) in files" :key="id">
+        {{ file.name }} ({{ file.size | kb }} kb) <button @click="removeFile(file)" title="Remove">X</button> <img :src="file.reader.result" alt="">
+
       </li>
     </ul>
     <p class="warning " v-bind:class="{ hidden: hideWarn }">Some files could not be loaded. Did you choose only image and text files?</p>
@@ -43,7 +44,10 @@ export default {
       this.hideWarn = true;
       ([...droppedFiles]).forEach(f => {
         if(this.isFileType(f)){
+          f.reader = new FileReader();
+          f.reader.readAsDataURL(f)
           this.files.push(f);
+          console.log(f)
         } else {
           this.hideWarn = false;
         }
@@ -61,15 +65,15 @@ export default {
     uploadFail() {
       this.response = "something went wrong"
     },
-    upload() {
-      let self = this;
+    uploadContinue(f){
+      console.log(f)
+      let file = f.pop();
+      console.dir(f)
+      let _this = this;
       let formData = new FormData();
-      this.files.forEach((f) => {
-        formData.append("image_file", f);
-      });
+      formData.append("image_file", file);
       formData.append('garden', this.$gardenApi.garden)
-      this.response = "working on it"
-      this.axios.post( this.$gardenApi.getPath(this.$gardenApi.imagesPath), // does this really need axios? would be nicer standalone using xhttprequest...
+      this.axios.post( this.$gardenApi.getPath(this.$gardenApi.imagesPath),
         formData,
         {
           headers: {
@@ -78,11 +82,20 @@ export default {
         }
       ).then(function(response){
         console.log(response);
-        self.uploadSucc()
+        if(f.length > 0){
+          _this.uploadContinue(f);
+        } else {
+          _this.uploadSucc()
+        }
+
       })
       .catch(function(){
-        self.uploadFail()
+        _this.uploadFail()
       });
+    },
+    upload() {
+      this.response = "working on it"
+      this.uploadContinue(this.files);
     },
     isFileType(file) {
       let fileType = file && file['type'].split('/')[0];

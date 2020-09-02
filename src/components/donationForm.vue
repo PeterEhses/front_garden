@@ -1,6 +1,6 @@
 <template>
   <form id="donationForm" onsubmit="return false;">
-    <legend class="small">Select any image files</legend>
+    <legend class="small">Select any image files. Your phone will ask you for permission to access your photo gallery.</legend>
     <h2>Data</h2>
 
     <v-dragdrop ref="dragdrop">tap here to donate images</v-dragdrop>
