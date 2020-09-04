@@ -21,6 +21,7 @@ export default {
   methods: {
     submitForm(){
       this.$refs.dragdrop.upload();
+      this.$emit('submitted');
     }
   }
 }

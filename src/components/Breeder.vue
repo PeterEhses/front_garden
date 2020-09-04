@@ -42,7 +42,7 @@ export default {
         handler: function(){
           if(Object.keys(this.images).length > 0){
             this.hasImages = false;
-            console.log(this.images)
+            //console.log(this.images)
           } else {
             this.hasImages = true;
           }

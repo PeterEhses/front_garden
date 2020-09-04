@@ -14,7 +14,7 @@
 
       </li>
     </ul>
-    <p class="warning " v-bind:class="{ hidden: hideWarn }">Some files could not be loaded. Did you choose only image and text files?</p>
+    <p class="warning " v-bind:class="{ hidden: hideWarn }">Some files could not be loaded. Did you choose only image files?</p>
 
   </fieldset>
 

@@ -112,7 +112,10 @@ output{
 }
 
 table{
-  width: 100%;
+  //table-layout:fixed;
+  word-break: break-all;
+  border-collapse:collapse;
+    width: 100% !important;
   border-spacing: 0;
   @include font-default(.75);
   background: $bg-dark;
@@ -125,12 +128,15 @@ table{
     border-collapse: collapse;
   }
   table{
+
+    width: 100% !important;
     padding: 0;
     tr th{
       border-left: $outline-weight solid $bg-dark;
     }
   }
   th{
+    //width:10vw;
     @include font-highlight(.75);
     vertical-align: top;
     text-align: left;

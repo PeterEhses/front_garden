@@ -12,7 +12,14 @@
 
       </div>
       <Modal v-if="modal" @click="clicked">
-        <SingleGalleryItemModalInner :image="image" :nameItem="nameItem" :tagItem="tagItem" :decayIcon="decayIcon" :breeding="breeding"/>
+        <SingleGalleryItemModalInner
+        :image="image"
+        :nameItem="nameItem"
+        :tagItem="tagItem"
+        :decayIcon="decayIcon"
+        :breeding="breeding"
+        @breed="$emit('breed', $event)"
+        />
       </Modal>
   </div>
 </template>

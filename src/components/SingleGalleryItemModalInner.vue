@@ -8,7 +8,7 @@
     </div>
     <div class="selectables">
         <NameItem v-if="nameItem" :name="image.name"/>
-        <NameItem v-if="nameItem" :name="image.name"/>
+        <BreedSelectItem v-if="breeding" :breed="image.breeding" @click="$emit('breed', image)"/>
     </div>
 
 
@@ -18,10 +18,12 @@
 <script>
 import JsonTable from '@/components/JsonTable.vue';
 import NameItem from '@/components/NameItem.vue';
+import BreedSelectItem from '@/components/BreedSelectItem.vue';
 export default {
   components: {
     JsonTable,
     NameItem,
+    BreedSelectItem
   },
   props: {
     /**
@@ -76,6 +78,7 @@ export default {
 
 <style lang="scss" scoped>
 .darkoverlay{
+  z-index: 20;
   position: fixed;
   left: 0;
   top: 0;
@@ -108,7 +111,8 @@ export default {
   position: relative;
   box-sizing: border-box;
   padding: 1em;
-  margin-bottom: 12.4vmin;
+  padding-bottom: 6.2vmin;
+  margin-bottom: 6.2vmin;
   width: 100%;
   height: auto;
   //border: 1px solid blue;
