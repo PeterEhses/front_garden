@@ -39,7 +39,7 @@ export default {
   data(){
     return{
       seconds: 0,
-      playtime: .2*60,
+      playtime: 3*60,
       startseconds: 0,
       startplay: false,
     }
@@ -65,10 +65,10 @@ export default {
     movietime(){
       this.startseconds = this.countdown()
       this.startplay = true;
-      console.log("movie play")
+      //console.log("movie play")
     },
     endplay(){
-      console.log("movie ended")
+      //console.log("movie ended")
       this.startplay = false;
       this.$router.push('care')
     },
@@ -78,7 +78,7 @@ export default {
         this.endplay()
       } else {
         seconds = Math.floor((Date.now() / 1000));
-        console.log(seconds, this.startseconds)
+        //console.log(seconds, this.startseconds)
         let _this = this;
         setTimeout(function(){_this.countdown(true)}, 1000);
         this.seconds = seconds;
@@ -105,6 +105,7 @@ export default {
   width: calc(100% - 1.5px);
   border-radius: 0 0 1.5*$frame-constant 0;
   video{
+    object-fit: cover;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -113,6 +114,7 @@ export default {
 
     overflow: hidden;
     height: 100%;
+    min-width: 100%;
     width: auto;
   }
   p{

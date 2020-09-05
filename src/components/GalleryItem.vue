@@ -1,10 +1,17 @@
 <template>
   <div class="li" v-lazy:background-image="image.image_file" loading="lazy" >
       <!-- <img v-lazy="img.image_file"> -->
+      <div class="duotoner">
 
+      </div>
+      <div class="duotone light">
+
+      </div>
       <div class="overlay" @click="clicked">
         <p class="small">UUID: {{ image.uuid }}</p> <br>
-        <p class="small">created at: {{ createdDate }}</p>
+        <p class="small">created at: {{ createdDate }}</p><br>
+        <p class="small">tags: {{ image.tags }}</p><br>
+        <p class="small">generation: {{ image.generation }}</p>
       </div>
       <div :class="['button-overlay', image.breeding == true ? 'active' : null]" v-if="breeding" @click="$emit('breed', image)">
         <Check v-if="image.breeding"/>
@@ -106,19 +113,49 @@ export default {
   justify-content: center;
   align-items: center;
   .overlay{
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
     position: absolute;
     top: 0;
     width: 100%;
     height: 100%;
     overflow-wrap: break-word;
   }
-}
-.li::after{
-  content: "";
- display: block;
-  padding-bottom: 100%;
-}
+ &::after{
+   content: "";
+  display: block;
+   padding-bottom: 100%;
 
+ }
+ &:hover .duotoner,
+ &:focus .duotoner{
+   opacity: 0;
+
+ }
+}
+.duotoner{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $highlight-default;
+  mix-blend-mode: hue;
+  // background-color: $bg-dark;
+  // mix-blend-mode: overlay;
+  transition: all $transition-constant linear;
+  opacity: 1;
+  &.light{
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $bg-dark;
+    //mix-blend-mode: color-dodge;
+    transition: all $transition-constant ease-in-out;
+  }
+}
 .button-overlay{
   border: $outline-weight solid $white;
   border-radius: 12345px;

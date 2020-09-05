@@ -4,6 +4,7 @@
     <clock-outline :class="type == 'created_at' ? 'selected' : null" @click="updateType('created_at')"/>
     <bank-outline :class="type == 'original_created_at' ? 'selected' : null" @click="updateType('original_created_at')"/>
     <!-- <key-outline :class="type == 'uuid' ? 'selected' : null" @click="updateType('uuid')"/> -->
+    <tag :class="type == 'generation' ? 'selected' : null" @click="updateType('tags')"/>
     <chart-sankey-variant :class="type == 'generation' ? 'selected' : null" @click="updateType('generation')"/>
 
 
@@ -23,6 +24,7 @@ import ArrowDown from 'vue-material-design-icons/ArrowDown.vue';
 //import KeyOutline from 'vue-material-design-icons/KeyOutline.vue';
 import ChartSankeyVariant from 'vue-material-design-icons/ChartSankeyVariant.vue';
 import BankOutline from 'vue-material-design-icons/BankOutline.vue';
+import Tag from 'vue-material-design-icons/Tag.vue';
 import ClockOutline from 'vue-material-design-icons/ClockOutline.vue';
 export default {
   components: {
@@ -30,7 +32,8 @@ export default {
     ArrowDown,
     ChartSankeyVariant,
     BankOutline,
-    ClockOutline
+    ClockOutline,
+    Tag
   },
   props: {
     type: {
