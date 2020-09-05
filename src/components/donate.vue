@@ -12,6 +12,8 @@
 
             <source src="@/assets/leaf_breath.webm"
                     type="video/webm">
+            <source src="@/assets/leaf_breath.mp4"
+                    type="video/mp4">
 
             Sorry, your browser doesn't support embedded videos. Continue to "care" from the side menu.
             <br/><br/><br/><br/><br/>
