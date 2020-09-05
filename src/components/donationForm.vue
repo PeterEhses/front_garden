@@ -3,10 +3,11 @@
     <legend class="small">Select any image files. Your phone will ask you for permission to access your photo gallery.</legend>
     <h2>Data</h2>
 
-    <v-dragdrop ref="dragdrop">tap here to donate images</v-dragdrop>
+    <v-dragdrop ref="dragdrop" @uploadsuccess="$emit('submitted')">tap here to donate images</v-dragdrop>
     <legend class="small">after reviewing your data, plant it as a new seed</legend>
-    <v-button v-bind:onClick="submitForm" bottomright line>plant this seed</v-button>
+    <v-button v-bind:onClick="submitForm" bottomright line>plant this seed and advance</v-button>
   </form>
+
 </template>
 
 <script>
@@ -21,7 +22,7 @@ export default {
   methods: {
     submitForm(){
       this.$refs.dragdrop.upload();
-      this.$emit('submitted');
+      //this.$emit('submitted');
     }
   }
 }

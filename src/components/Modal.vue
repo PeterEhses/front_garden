@@ -7,10 +7,10 @@
 
   </div>
 
-  <div class="modal-inner">
+  <div :class="['modal-inner', overflow=='hidden' ? 'oh' : null]">
     <slot>something went wrong</slot>
   </div>
-  <close/>
+  <close v-if="!noclose"/>
 
 
 </div>
@@ -22,6 +22,15 @@ import Close from 'vue-material-design-icons/Close.vue';
             name: 'Modal',
             components: {
               Close
+            },
+            props: {
+              noclose: {
+                type: Boolean,
+                default: false
+              },
+              overflow: {
+                type: String
+              }
             }
         };
     </script>
@@ -53,7 +62,8 @@ import Close from 'vue-material-design-icons/Close.vue';
   padding: calc(10.5vmin + 2vmin);
   padding-right: calc(5vmin + 1.3vmin);
   box-sizing: border-box;
-
+  &.oh{
+  }
 }
 .filter{
   position: fixed;

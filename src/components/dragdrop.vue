@@ -63,6 +63,7 @@ export default {
     uploadSucc() {
       this.files = [];
       this.response = "upload successful"
+      this.$emit('uploadsuccess');
     },
     uploadFail() {
       this.response = "something went wrong"

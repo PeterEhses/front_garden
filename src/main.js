@@ -81,38 +81,40 @@ const routes = [
   },
   {
     path: '/care',
-    component: () => import("./components/care.vue"),
+    name:"care",
+    title: "care",
+    component: () => import("./components/careGallery.vue"), // remove 'Gallery' for use with children
     meta: {
-        visible: false
+        visible: true
     },
-    children: [
-      {
-        path:"",
-        name:"care",
-        title: "care",
-        meta: {
-            visible: true
-        },
-        component: () => import("./components/careSelect.vue")
-      },
-      {
-        path:"breed",
-        name:"breed",
-        component: () => import("./components/careGallery.vue")
-      },
-      {
-        path:"name",
-        name:"name"
-      },
-      {
-        path:"want",
-        name:"want"
-      },
-      {
-        path:"decompose",
-        name:"decompose"
-      }
-    ]
+    // children: [
+    //   {
+    //     path:"",
+    //     name:"care",
+    //     title: "care",
+    //     meta: {
+    //         visible: true
+    //     },
+    //     component: () => import("./components/careSelect.vue")
+    //   },
+    //   {
+    //     path:"breed",
+    //     name:"breed",
+    //     component: () => import("./components/careGallery.vue")
+    //   },
+    //   {
+    //     path:"name",
+    //     name:"name"
+    //   },
+    //   {
+    //     path:"want",
+    //     name:"want"
+    //   },
+    //   {
+    //     path:"decompose",
+    //     name:"decompose"
+    //   }
+    // ]
   },
   {
     path: '/datenschutz',
