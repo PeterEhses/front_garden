@@ -121,18 +121,18 @@ this.$gardenApi.getPath(this.$gardenApi.seedsPath),
       for(let i = 0; i < arr.length; i++){
         if(arr[i].garden == this.$gardenApi.garden){
           arr[i].breeding = false;
-          if(arr[i].metadata !== null && typeof(arr[i].metadata === 'string')){
-            let md = arr[i].metadata
-            md = md.replace(/False/g, 'false').replace(/True/g, 'true').replace(/\\x/g, '').replace(/"/g, '`').replace(/'/g, '"');
-            try{
-              md = JSON.parse(md)
-               arr[i].metadata = md
-            } catch (err) {
-              arr[i].metadata = {error: err}
-              console.log(i, md)
-            }
-
-          }
+          // if(arr[i].metadata !== null && typeof(arr[i].metadata === 'string')){
+          //   let md = arr[i].metadata
+          //   md = md.replace(/False/g, 'false').replace(/True/g, 'true').replace(/\\x/g, '').replace(/"/g, '`').replace(/'/g, '"');
+          //   try{
+          //     md = JSON.parse(md)
+          //      arr[i].metadata = md
+          //   } catch (err) {
+          //     arr[i].metadata = {error: err}
+          //     console.log(i, md)
+          //   }
+          //
+          // }
           obj[arr[i].uuid] = arr[i]
         }
 

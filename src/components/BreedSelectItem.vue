@@ -28,5 +28,6 @@ export default {
 }
 button{
   padding: 0 1em;
+  min-height: 3em;
 }
 </style>

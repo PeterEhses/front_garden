@@ -1,12 +1,12 @@
 <template>
   <div class="li" v-lazy:background-image="image.image_file" loading="lazy" >
       <!-- <img v-lazy="img.image_file"> -->
-      <div class="duotoner">
+      <!-- <div class="duotoner">
 
       </div>
       <div class="duotone light">
 
-      </div>
+      </div> -->
       <div class="overlay" @click="clicked">
         <p class="small">UUID: {{ image.uuid }}</p> <br>
         <p class="small">created at: {{ createdDate }}</p><br>

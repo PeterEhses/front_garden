@@ -9,21 +9,22 @@
     <div class="selectables">
         <NameItem v-if="nameItem" :name="image.name"/>
         <BreedSelectItem v-if="breeding" :breed="image.breeding" @click="$emit('breed', image)"/>
+        <DecayItem v-if="decayItem" :decay="image.decay" @decay="decay"/>
     </div>
-
-
   </div>
 </template>
 
 <script>
 import JsonTable from '@/components/JsonTable.vue';
 import NameItem from '@/components/NameItem.vue';
+import DecayItem from '@/components/DecayItem.vue';
 import BreedSelectItem from '@/components/BreedSelectItem.vue';
 export default {
   components: {
     JsonTable,
     NameItem,
-    BreedSelectItem
+    BreedSelectItem,
+    DecayItem
   },
   props: {
     /**
@@ -57,7 +58,7 @@ export default {
     /**
     * display decay dialog on image modal
     */
-    decayIcon: {
+    decayItem: {
       type: Boolean,
       default: true
     }
@@ -70,8 +71,33 @@ export default {
   computed: {
 
   },
+  methods: {
+    updateProperty(p){
+      for(var [key, value] of Object.entries(p)){
+        this.image[key] = value
+        console.log(this)
+      }
+      console.log(p)
+    },
+    decay(){
+      console.log("DDD")
+      this.updateProperty({decay: true})
+    }
+  },
   mounted(){
     //console.dir(this)
+    if(this.image.metadata !== null && typeof(this.image.metadata) === 'string'){
+      let md = this.image.metadata
+      md = md.replace(/False/g, 'false').replace(/True/g, 'true').replace(/\\x/g, '').replace(/"/g, '`').replace(/'/g, '"');
+      try{
+        md = JSON.parse(md)
+         this.image.metadata = md
+      } catch (err) {
+        this.image.metadata = {error: err}
+        console.log(md, err)
+      }
+
+    }
   }
 }
 </script>
