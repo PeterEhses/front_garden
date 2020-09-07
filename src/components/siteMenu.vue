@@ -111,7 +111,7 @@ export default {
 
 #menu input:checked ~ div,
 #menu input:checked{
-  transform: translateY( calc(-2.7rem - #{$outline-weight}));
+  transform: translateY( calc(-2.75rem - #{$outline-weight}));
 }
 
 
@@ -138,11 +138,13 @@ export default {
 
     display: flex;
     align-items: center;
-    height: $frame-constant*0.82;
+    height: $frame-constant*.9;
     padding: 0;
     margin: 0 0 0 $frame-constant;
     #threeDots {
         display: flex;
+        position: relative;
+        top: .5vmin;
         align-items: center;
         margin: 0 2vmin;
         height: 0.7*$frame-constant/2;

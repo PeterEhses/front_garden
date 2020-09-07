@@ -1,21 +1,25 @@
 <template>
   <div id="app">
     <div class="popout" ref="scroller">
-
+      <div class="contentwrap">
         <router-view></router-view>
+        <Footer/>
+      </div>
 
     </div>
     <siteMenu siteName="tangled garden" ref="menu"/>
+
   </div>
 </template>
 
 <script>
 import siteMenu from './components/siteMenu.vue';
-
+import Footer from '@/components/Footer.vue';
 export default {
   name: 'App',
   components: {
-  siteMenu
+  siteMenu,
+  Footer
 },
 watch:{
     $route (){
@@ -45,6 +49,7 @@ watch:{
   // @include dot-grid();
 }
 .popout {
+  z-index: 2;
   position: relative;
   top: -$frame-constant;
   height: 100%;
@@ -60,6 +65,10 @@ watch:{
   }
   & > * {
     margin-right: $frame-constant/2;
+  }
+  .contentwrap{
+    min-height: calc(100vh - #{$frame-constant * 3.5});
+    position: relative;
   }
 }
 

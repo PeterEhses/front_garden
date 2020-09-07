@@ -122,7 +122,7 @@ const routes = [
     title: "datenschutz & impressum",
     component: () => import("./components/legal.vue"),
     meta: {
-        visible: true
+        visible: false
     }
   }
 ]

@@ -7,7 +7,7 @@
 
   </div>
 
-  <div :class="['modal-inner', overflow=='hidden' ? 'oh' : null]">
+  <div :class="['modal-inner', overflow=='hidden' ? 'oh' : null, fullscreen ? 'fullscreen': null]">
     <slot>something went wrong</slot>
   </div>
   <close v-if="!noclose"/>
@@ -30,6 +30,10 @@ import Close from 'vue-material-design-icons/Close.vue';
               },
               overflow: {
                 type: String
+              },
+              fullscreen: {
+                type: Boolean,
+                default: false
               }
             }
         };
@@ -63,6 +67,10 @@ import Close from 'vue-material-design-icons/Close.vue';
   padding-right: calc(5vmin + 1.3vmin);
   box-sizing: border-box;
   &.oh{
+  }
+  &.fullscreen{
+    margin: 0;
+    padding: 0;
   }
 }
 .filter{

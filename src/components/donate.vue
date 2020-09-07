@@ -5,7 +5,7 @@
     <p>You can also forward emails to <a href="mailto:donate@tangled.garden" target="_blank" rel="noopener noreferrer" @click="movietime">donate@tangled.garden</a> or use the scanner device.</p>
     <donation-form @submitted="movietime"/>
 
-    <Modal v-if="startplay" noclose overflow="hidden">
+    <Modal v-if="startplay" noclose fullscreen overflow="hidden">
       <div class="video">
 
         <video autoplay="true" loop="true" preload="auto">
@@ -18,7 +18,7 @@
             Sorry, your browser doesn't support embedded videos. Continue to "care" from the side menu.
             <br/><br/><br/><br/><br/>
         </video>
-        <p>{{minsremain}}:{{secsremain}}<br/>you'll be redirected</p>
+        <p>{{minsremain}}:{{secsremain}}<br/>you'll be redirected in a more poetic way</p>
       </div>
 
 
@@ -103,7 +103,7 @@ export default {
   //background: red;
   height: calc(100% - 1px);
   width: calc(100% - 1.5px);
-  border-radius: 0 0 1.5*$frame-constant 0;
+  //border-radius: 0 0 1.5*$frame-constant 0;
   video{
     object-fit: cover;
     position: absolute;
@@ -119,10 +119,10 @@ export default {
   }
   p{
     position: absolute;
-    top: 50%;
+    top: 5%;
     left: 50%;
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%);// translateY(-50%);
+    transform: translateX(-50%);// translateY(-50%);
     padding: .5em 1em;
     border-radius: 12345px;
     border: $outline-weight solid $highlight-default;
