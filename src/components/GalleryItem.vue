@@ -99,12 +99,12 @@ export default {
   watch: {
     'image.tags': {
       handler(){
-        let tags = []
+        let tags = {}
         let asString = ""
         for(const id in this.image.tags){
           let tag = this.tags[this.image.tags[id]]
           if(tag){
-            tags.push(tag)
+            tags[tag.id] = tag
             if(tag.name && !tag.hidden){
               asString += tag.name + ", "
             }
@@ -221,6 +221,10 @@ export default {
   position: absolute;
   bottom: 0;
   right: 0;
+  &:hover{
+    border: $outline-weight solid $highlight-bright;
+
+  }
   &.active{
     background: $highlight-default;
   }

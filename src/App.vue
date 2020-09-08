@@ -49,7 +49,7 @@ watch:{
   // @include dot-grid();
 }
 .popout {
-  z-index: 2;
+  // z-index: 2;
   position: relative;
   top: -$frame-constant;
   height: 100%;

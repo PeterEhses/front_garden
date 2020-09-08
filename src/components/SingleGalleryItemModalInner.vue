@@ -10,6 +10,7 @@
         <NameItem v-if="nameItem" :name="image.name" @name="nameItemAction"/>
         <BreedSelectItem v-if="breeding" :breed="image.breeding" @click="$emit('breed', image)"/>
         <DecayItem v-if="decayItem" :decay="image.decay" :decayed="image.decayed" @decay="decayItemAction"/>
+        <TagItem v-if="tagItem" :tags="tags" :activeTags="image.tagsComputed.tags"/>
     </div>
   </div>
 </template>
@@ -19,12 +20,14 @@ import JsonTable from '@/components/JsonTable.vue';
 import NameItem from '@/components/NameItem.vue';
 import DecayItem from '@/components/DecayItem.vue';
 import BreedSelectItem from '@/components/BreedSelectItem.vue';
+import TagItem from '@/components/TagItem.vue';
 export default {
   components: {
     JsonTable,
     NameItem,
     BreedSelectItem,
-    DecayItem
+    DecayItem,
+    TagItem
   },
   props: {
     /**

@@ -35,6 +35,7 @@ p{
 }
 
 .decayoptin{
+  z-index: 1234;
   text-align: center;
   display: flex;
   flex-direction: column;

@@ -1,8 +1,8 @@
 <template>
   <div class="nameitem" >
-    <label v-if="typeof(name) === 'string'">"{{name}}"</label>
+    <label v-if="typeof(name) === 'string'" class="titlecard">"{{name}}"</label>
     <label v-else> Name this data <br><input type="text" name="" v-model="content" placeholder="start typing ..."></label>
-    <SendButton v-if="typeof(name) !== 'string'" @click="()=>{if(content.length > 0){modalvisible = true}}" :inactive="!(content.length > 0)"/>
+    <SendButton v-if="typeof(name) !== 'string' && content.length > 0" @click="()=>{if(content.length > 0){modalvisible = true}}" :inactive="!(content.length > 0)"/>
 
     <YesNo @yes="$emit('name', content)" v-if="modalvisible" @click="modalvisible = false"/>
   </div>
@@ -30,12 +30,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.titlecard{
+  text-align: center;
+}
 .nameitem{
   position: relative;
-  flex-basis: 40%;
+  flex-basis: 100%;
   flex-grow: 1;
   text-align: left;
   padding: 1em;
+  margin: 0 25%;
   input{
     display: inline-block;
     width: 100%;
@@ -47,6 +51,7 @@ export default {
 
 @media (max-width: 800px){
   .nameitem{
+    margin: 0;
     flex-basis: 100%;
   }
 }
