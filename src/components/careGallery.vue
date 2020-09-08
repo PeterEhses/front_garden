@@ -4,7 +4,7 @@
     <GalleryFilter :type="requestType" :direction="requestDirection" @typechange="changeRequestType" @directionchange="changeRequestDirection"/>
 
     <div class="ul" v-if="objSize(images) > 0">
-      <GalleryItem v-for="img in images" :key="img.uuid" :image="img" @breed="changeBreed"/>
+      <GalleryItem v-for="img in images" :key="img.uuid" :image="img" @breed="changeBreed" :tags="tagsJson"/>
 
     </div>
     <div class="loader" v-else>
@@ -33,6 +33,7 @@ export default {
   data: function(){
     return{
       responseJson: {},
+      tagsJson: {},
       requestType: "created_at",
       requestDirection: true,
       toBreed: {}
@@ -116,28 +117,23 @@ this.$gardenApi.getPath(this.$gardenApi.seedsPath),
       this.requestType = e;
       this.getImages()
     },
-    arrayToObject(arr){
+    arrayToObject(arr, keyfield = 'uuid', gardenfilter = true){
       let obj = {}
       for(let i = 0; i < arr.length; i++){
-        if(arr[i].garden == this.$gardenApi.garden){
+        if(!gardenfilter || arr[i].garden == this.$gardenApi.garden){
           arr[i].breeding = false;
-          // if(arr[i].metadata !== null && typeof(arr[i].metadata === 'string')){
-          //   let md = arr[i].metadata
-          //   md = md.replace(/False/g, 'false').replace(/True/g, 'true').replace(/\\x/g, '').replace(/"/g, '`').replace(/'/g, '"');
-          //   try{
-          //     md = JSON.parse(md)
-          //      arr[i].metadata = md
-          //   } catch (err) {
-          //     arr[i].metadata = {error: err}
-          //     console.log(i, md)
-          //   }
-          //
-          // }
-          obj[arr[i].uuid] = arr[i]
+          obj[arr[i][keyfield]] = arr[i]
         }
 
       }
       return obj
+    },
+    getTags(){
+      let path = this.$gardenApi.getPath(this.$gardenApi.tagsPath)
+      this.axios.get(path).then((response) => { // possible race condition on fast type / direction change
+        console.log(response.data)
+        this.tagsJson = this.arrayToObject(response.data, 'id', false)
+      })
     },
     getImages(){
       let url = "https://tangled.garden/api/images/?format=json&ordering=";
@@ -160,6 +156,7 @@ this.$gardenApi.getPath(this.$gardenApi.seedsPath),
     }
   },
   mounted(){
+    this.getTags();
     this.getImages();
   }
 }

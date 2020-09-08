@@ -7,9 +7,9 @@
       <JsonTable :srcjson="image"/>
     </div>
     <div class="selectables">
-        <NameItem v-if="nameItem" :name="image.name"/>
+        <NameItem v-if="nameItem" :name="image.name" @name="nameItemAction"/>
         <BreedSelectItem v-if="breeding" :breed="image.breeding" @click="$emit('breed', image)"/>
-        <DecayItem v-if="decayItem" :decay="image.decay" @decay="decay"/>
+        <DecayItem v-if="decayItem" :decay="image.decay" :decayed="image.decayed" @decay="decayItemAction"/>
     </div>
   </div>
 </template>
@@ -31,6 +31,13 @@ export default {
     *  image object, should contain all data needed
     */
     image: {
+      type: Object,
+      required: true
+    },
+    /**
+    *  tags object, should contain all tags
+    */
+    tags: {
       type: Object,
       required: true
     },
@@ -72,14 +79,49 @@ export default {
 
   },
   methods: {
+    uploadSucc(e){
+      console.log(e)
+    },
+    uploadFail(e){
+      console.log(e)
+    },
+    upload(data){
+      console.log("up")
+      let _this = this;
+
+      let formData = new FormData();
+      for(var [key, value] of Object.entries(data)){
+        formData.append(""+key, value);
+        console.log(key, value)
+      }
+      let path = this.$gardenApi.getPath(this.$gardenApi.imagesPath, this.image.uuid)
+      console.log(path)
+      this.axios.patch( path,
+        formData,
+        {
+          headers: {
+              'Content-Type': 'multipart/form-data' //  'application/json'//
+          }
+        }
+      ).then(function(response){
+          _this.uploadSucc(response)
+      })
+      .catch(function(reason){
+        _this.uploadFail(reason)
+      });
+    },
     updateProperty(p){
+      this.upload(p)
       for(var [key, value] of Object.entries(p)){
         this.image[key] = value
         console.log(this)
       }
       console.log(p)
     },
-    decay(){
+    nameItemAction(name){
+      this.updateProperty({name: name})
+    },
+    decayItemAction(){
       console.log("DDD")
       this.updateProperty({decay: true})
     }

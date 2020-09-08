@@ -32,15 +32,19 @@ Vue.prototype.$gardenApi= {
   basePath: 'https://tangled.garden/api',
   imagesPath:'/images',
   seedsPath: '/seeds',
-  format: 'format=api',
+  tagsPath: '/tags',
+  format: '',// 'format=api',
   getPath: function(path, uuid = undefined){
 
     path = this.basePath + path
     if(typeof(uuid) !== 'undefined'){
         path += "/" + uuid
     }
-    path += "/?"
-    path += this.format
+    if(this.format.length && this.format.length > 0){
+      path += "/?"
+      path += this.format
+    }
+
     return path
   }
 }

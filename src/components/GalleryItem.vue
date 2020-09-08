@@ -1,5 +1,5 @@
 <template>
-  <div class="li" v-lazy:background-image="image.image_file" loading="lazy" >
+  <div v-if="!image.decayed" class="li" v-lazy:background-image="image.image_file" loading="lazy">
       <!-- <img v-lazy="img.image_file"> -->
       <!-- <div class="duotoner">
 
@@ -10,7 +10,7 @@
       <div class="overlay" @click="clicked">
         <p class="small">UUID: {{ image.uuid }}</p> <br>
         <p class="small">created at: {{ createdDate }}</p><br>
-        <p class="small">tags: {{ image.tags }}</p><br>
+        <p class="small">tags: {{ activeTags.asString }}</p><br>
         <p class="small">generation: {{ image.generation }}</p>
       </div>
       <div :class="['button-overlay', image.breeding == true ? 'active' : null]" v-if="breeding" @click="$emit('breed', image)">
@@ -20,6 +20,7 @@
       </div>
       <Modal v-if="modal" @click="clicked">
         <SingleGalleryItemModalInner
+        :tags="tags"
         :image="image"
         :nameItem="nameItem"
         :tagItem="tagItem"
@@ -28,6 +29,12 @@
         @breed="$emit('breed', $event)"
         />
       </Modal>
+  </div>
+  <div v-else class="li decayed">
+    <svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100'>
+      <path d='M100 0 L0 100 '  />
+      <path d='M0 0 L100 100 '  />
+    </svg>
   </div>
 </template>
 
@@ -47,6 +54,13 @@ export default {
   props: {
     image: {
       type: Object
+    },
+    /**
+    *  tags object, should contain all tags
+    */
+    tags: {
+      type: Object,
+      required: true
     },
     /**
     * display breeding dialog on image thumbnail
@@ -82,7 +96,48 @@ export default {
       modal: false
     }
   },
+  watch: {
+    'image.tags': {
+      handler(){
+        let tags = []
+        let asString = ""
+        for(const id in this.image.tags){
+          let tag = this.tags[this.image.tags[id]]
+          if(tag){
+            tags.push(tag)
+            if(tag.name && !tag.hidden){
+              asString += tag.name + ", "
+            }
+          }
+        }
+        if(asString.length > 1){
+          asString = asString.slice(0, -2)
+        }
+        this.image.tagsComputed = {tags, asString}
+      },
+      deep: true,
+      immediate: true
+    }
+  },
   computed: {
+    activeTags(){
+      let tags = []
+      let asString = ""
+      for(const id in this.image.tags){
+        let tag = this.tags[this.image.tags[id]]
+        if(tag){
+          tags.push(tag)
+          if(tag.name && !tag.hidden){
+            asString += tag.name + ", "
+          }
+        }
+      }
+      if(asString.length > 1){
+        asString = asString.slice(0, -2)
+      }
+
+      return {tags, asString}
+    },
     createdDate(){
       let date = new Date(this.image.created_at)
       return date.toLocaleString()
@@ -179,9 +234,19 @@ export default {
       fill: $white;
       width: 1rem;
       height: 1rem;
+
     }
   }
 
+}
+
+.decayed{
+  svg{
+    width: 100%;
+    height: 100%;
+    stroke: $highlight-default;
+    stroke-width: .3;
+  }
 }
 
 @media (max-width: 800px){

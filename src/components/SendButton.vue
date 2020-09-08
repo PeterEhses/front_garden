@@ -1,5 +1,5 @@
 <template>
-<div class="send-button">
+<div :class="['send-button', inactive ? 'inactive' : null]" @click="$emit('click', $event)">
   <send/>
 </div>
 </template>
@@ -7,6 +7,12 @@
 <script>
 import Send from 'vue-material-design-icons/Send.vue';
 export default {
+  props: {
+    inactive: {
+      type: Boolean,
+      default: false
+    }
+  },
   components: {
     Send
   }
@@ -36,6 +42,13 @@ export default {
       padding-left: .15em;
       width: .75em;
       height: .75em;
+    }
+  }
+  &.inactive{
+    background: $highlight-disabled;
+    border: $outline-weight solid $disabled;
+    span svg{
+      fill: $disabled;
     }
   }
 }
