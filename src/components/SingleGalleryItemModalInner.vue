@@ -10,7 +10,7 @@
         <NameItem v-if="nameItem" :name="image.name" @name="nameItemAction"/>
         <BreedSelectItem v-if="breeding" :breed="image.breeding" @click="$emit('breed', image)"/>
         <DecayItem v-if="decayItem" :decay="image.decay" :decayed="image.decayed" @decay="decayItemAction"/>
-        <TagItem v-if="tagItem" :tags="tags" :activeTags="image.tagsComputed.tags"/>
+        <TagItem v-if="tagItem" :tags="tags" :activeTags="image.tagsComputed.tags" @tag="tagItemAction"/>
     </div>
   </div>
 </template>
@@ -94,7 +94,14 @@ export default {
 
       let formData = new FormData();
       for(var [key, value] of Object.entries(data)){
-        formData.append(""+key, value);
+        if(Array.isArray(value)){
+          for(let i = 0; i < value.length; i++){
+            formData.append(""+key, value[i]);
+          }
+        } else {
+          formData.append(""+key, value);
+        }
+
         console.log(key, value)
       }
       let path = this.$gardenApi.getPath(this.$gardenApi.imagesPath, this.image.uuid)
@@ -125,8 +132,10 @@ export default {
       this.updateProperty({name: name})
     },
     decayItemAction(){
-      console.log("DDD")
       this.updateProperty({decay: true})
+    },
+    tagItemAction(e){
+      this.updateProperty({tags: e})
     }
   },
   mounted(){

@@ -133,7 +133,14 @@ this.$gardenApi.getPath(this.$gardenApi.seedsPath),
       this.axios.get(path).then((response) => { // possible race condition on fast type / direction change
         console.log(response.data)
         this.tagsJson = this.arrayToObject(response.data, 'id', false)
+
+        for(const tag in this.tagsJson){
+          if(this.tagsJson[tag].name){
+            this.tagsJson[tag].name = this.tagsJson[tag].name.replace(/_/g, ' ');
+          }
+        }
       })
+
     },
     getImages(){
       let url = "https://tangled.garden/api/images/?format=json&ordering=";

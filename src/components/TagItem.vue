@@ -1,14 +1,17 @@
 <template>
   <div class="taginput">
-    <h3>Name this data</h3>
+    <h3>Sort this data</h3>
 
       <label  class="container" v-for="tag in inactiveTags" :key="tag.id">
 
-      <input  type="checkbox" :checked="activeTags[tag.id]">
+      <input  type="checkbox" :checked="activeTags[tag.id]" @change="doTagChange(tag, $event)">
       <span class="checkmark"></span>
       {{tag.name}}
     </label >
-    <SendButton class="sendhack"/>
+    <label class="placeholder"></label>
+    <label class="placeholder"></label>
+    <label class="placeholder"></label>
+    <SendButton class="sendhack" @click="sendTags" v-if="!changes"/>
   </div>
 </template>
 
@@ -26,19 +29,64 @@ export default {
 
     }
   },
+  data(){
+    return {
+      myTags: [],
+      myInitialTags: []
+    }
+  },
   computed: {
+    changes(){
+      let result = true;
+      for(const id in this.myTags){
+        if(!this.myInitialTags.includes(this.myTags[id])){
+          result = false;
+        }
+      }
+      return result;
+    },
     inactiveTags(){
       let iTags = {}
       for(const key in this.tags){
 
-        if(this.tags[key].hidden === false){
+        if(this.tags[key].hidden === false && this.tags[key].garden == this.$gardenApi.garden){
           iTags[key]=this.tags[key]
         }
       }
-      console.log(iTags)
         return iTags
     }
 
+  },
+  watch: {
+    activeTags: {
+      deep: true,
+      immediate: true,
+      handler(){
+        for(const tag in this.activeTags){
+          if(!this.myTags.includes(this.activeTags[tag].id)){
+            this.myTags.push(this.activeTags[tag].id)
+            this.myInitialTags.push(this.activeTags[tag].id)
+          }
+        }
+      }
+    }
+  },
+  methods: {
+    sendTags(){
+      this.$emit('tag', this.myTags)
+    },
+    doTagChange(t, e){
+      let includes = this.myTags.includes(t.id)
+      if(includes && !e.target.checked){
+        let index = this.myTags.indexOf(t.id)
+        if (index > -1) {
+          this.myTags.splice(index, 1);
+        }
+      }
+      if(!includes && e.target.checked){
+        this.myTags.push(t.id)
+      }
+    }
   }
 }
 </script>
@@ -51,7 +99,7 @@ export default {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  cursor: pointer;
+
   flex-grow: 1;
   flex-basis: 100%;
   display: flex;
@@ -68,6 +116,7 @@ export default {
     margin: .2em;
   }
   .container{
+    cursor: pointer;
     @include font-default(.9);
     padding: .2em .5em .2em 1.5em;
     word-break: break-all;
@@ -133,6 +182,14 @@ export default {
     flex-basis: 13em;
     flex-grow: 1;
     flex-shrink: 1;
+  }
+  .placeholder {
+    //height: 2px;
+    flex-basis: 11.78em;
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin: 5px;
+    //background-color: red;
   }
 }
 
