@@ -80,14 +80,12 @@ export default {
       this.response = "something went wrong"
     },
     uploadContinue(f){
-      console.log(f)
       let file = f.pop();
-      console.dir(f)
       let _this = this;
       let formData = new FormData();
       formData.append("image_file", file);
       formData.append('garden', this.$gardenApi.garden)
-      this.axios.post( this.$gardenApi.getPath(this.$gardenApi.imagesPath),
+      this.axios.post( this.$gardenApi.getPath(this.$gardenApi.imagesPath, undefined, 'api'),
         formData,
         {
           headers: {

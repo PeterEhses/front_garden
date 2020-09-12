@@ -34,15 +34,15 @@ Vue.prototype.$gardenApi= {
   seedsPath: '/seeds',
   tagsPath: '/tags',
   format: '',// 'format=api',
-  getPath: function(path, uuid = undefined){
+  getPath: function(path, uuid = undefined, format = ""){
 
     path = this.basePath + path
     if(typeof(uuid) !== 'undefined'){
         path += "/" + uuid
     }
-    if(this.format.length && this.format.length > 0){
-      path += "/?"
-      path += this.format
+    if(format.length && format.length > 0){
+      path += "/?format="
+      path += format
     }
 
     return path
