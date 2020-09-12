@@ -10,8 +10,8 @@
       <div class="overlay" @click="clicked">
         <p class="small">UUID: {{ image.uuid }}</p> <br>
         <p class="small">created at: {{ createdDate }}</p><br>
-        <p class="small">tags: {{ activeTags.asString }}</p><br>
-        <p class="small">generation: {{ image.generation }}</p>
+        <p class="small">{{ activeTags.asString }}</p><br>
+        <p class="small">generation: {{ image.generation+1 }}</p>
       </div>
       <div :class="['button-overlay', image.breeding == true ? 'active' : null]" v-if="breeding" @click="$emit('breed', image)">
         <Check v-if="image.breeding"/>
@@ -27,6 +27,7 @@
         :decayIcon="decayIcon"
         :breeding="breeding"
         @breed="$emit('breed', $event)"
+        @uploadfeedback="handleNewData"
         />
       </Modal>
   </div>
@@ -113,7 +114,7 @@ export default {
         if(asString.length > 1){
           asString = asString.slice(0, -2)
         }
-        this.image.tagsComputed = {tags, asString}
+        this.$set(this.image, 'tagsComputed', {tags, asString})
       },
       deep: true,
       immediate: true
@@ -144,6 +145,11 @@ export default {
     }
   },
   methods: {
+    handleNewData(data){
+      for(const [key, value] of Object.entries(data)){
+        this.$set(this.image, key, value)
+      }
+    },
     clicked(){
       this.modal = !this.modal
     },
@@ -257,6 +263,13 @@ export default {
   .li{
     margin: 5%;
     flex-basis: 40%;
+  }
+  .overlay{
+      line-height: .5em;
+  }
+  .small{
+    word-break: break-all;
+    font-size: .5em;
   }
   .button-overlay{
     border: none;

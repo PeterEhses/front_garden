@@ -10,7 +10,7 @@
         <NameItem v-if="nameItem" :name="image.name" @name="nameItemAction"/>
         <BreedSelectItem v-if="breeding" :breed="image.breeding" @click="$emit('breed', image)"/>
         <DecayItem v-if="decayItem" :decay="image.decay" :decayed="image.decayed" @decay="decayItemAction"/>
-        <TagItem v-if="tagItem" :tags="tags" :activeTags="image.tagsComputed.tags" @tag="tagItemAction"/>
+        <TagItem v-if="tagItem" :tags="tags" :activeTags="aTags" @tag="tagItemAction"/>
     </div>
   </div>
 </template>
@@ -79,17 +79,49 @@ export default {
     }
   },
   computed: {
+    aTags(){
+      if(this.image.tagsComputed && this.image.tagsComputed.tags){
+        return this.image.tagsComputed.tags
+      }
+      return []
+    }
+  },
+  watch: {
+    'image.metadata': {
+      deep: true,
+      immediate: true,
+      handler(){
+        if(this.image.metadata !== null && typeof(this.image.metadata) === 'string'){
+          let md = this.image.metadata
+          md = md.replace(/False/g, 'false').replace(/True/g, 'true').replace(/\\x/g, '').replace(/"/g, '`').replace(/'/g, '"');
+          try{
+            md = JSON.parse(md)
+             this.image.metadata = md
+          } catch (err) {
+            this.image.metadata = {error: err}
+            console.log(md, err)
+          }
 
+        }
+      }
+    }
   },
   methods: {
     uploadSucc(e){
-      console.log(e)
+      this.$emit('uploadfeedback', e.data)
+
+      // for(var [key, value] of Object.entries(p)){
+      //   //this.image[key] = value
+      //   this.$set(this.image, key, value)
+      // }
     },
-    uploadFail(e){
-      console.log(e)
+    uploadFail(e, p){
+      console.error("Error: ",e, p)
+      console.log("If you've made it this far, would you mind reporting this error? Just copy and send it to us or something. Thanks!")
+      alert("Your change didn't go through.\n Please try again.\nAdditional info can be found in the console if you're interested.")
+
     },
     upload(data){
-      console.log("up")
       let _this = this;
 
       let formData = new FormData();
@@ -101,11 +133,8 @@ export default {
         } else {
           formData.append(""+key, value);
         }
-
-        console.log(key, value)
       }
       let path = this.$gardenApi.getPath(this.$gardenApi.imagesPath, this.image.uuid)
-      console.log(path)
       this.axios.patch( path,
         formData,
         {
@@ -114,19 +143,15 @@ export default {
           }
         }
       ).then(function(response){
-          _this.uploadSucc(response)
+          _this.uploadSucc(response, data)
       })
       .catch(function(reason){
-        _this.uploadFail(reason)
+        _this.uploadFail(reason, data)
       });
     },
     updateProperty(p){
       this.upload(p)
-      for(var [key, value] of Object.entries(p)){
-        this.image[key] = value
-        console.log(this)
-      }
-      console.log(p)
+
     },
     nameItemAction(name){
       this.updateProperty({name: name})
@@ -140,18 +165,7 @@ export default {
   },
   mounted(){
     //console.dir(this)
-    if(this.image.metadata !== null && typeof(this.image.metadata) === 'string'){
-      let md = this.image.metadata
-      md = md.replace(/False/g, 'false').replace(/True/g, 'true').replace(/\\x/g, '').replace(/"/g, '`').replace(/'/g, '"');
-      try{
-        md = JSON.parse(md)
-         this.image.metadata = md
-      } catch (err) {
-        this.image.metadata = {error: err}
-        console.log(md, err)
-      }
 
-    }
   }
 }
 </script>

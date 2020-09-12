@@ -1,6 +1,6 @@
 <template>
   <div class="taginput">
-    <h3>Sort this data</h3>
+    <h3>What is this?</h3>
 
       <label  class="container" v-for="tag in inactiveTags" :key="tag.id">
 
@@ -43,6 +43,11 @@ export default {
           result = false;
         }
       }
+      for(const id in this.myInitialTags){
+        if(!this.myTags.includes(this.myInitialTags[id])){
+          result = false;
+        }
+      }
       return result;
     },
     inactiveTags(){
@@ -62,18 +67,29 @@ export default {
       deep: true,
       immediate: true,
       handler(){
-        for(const tag in this.activeTags){
-          if(!this.myTags.includes(this.activeTags[tag].id)){
-            this.myTags.push(this.activeTags[tag].id)
-            this.myInitialTags.push(this.activeTags[tag].id)
-          }
-        }
+        this.tagCompute()
       }
     }
   },
   methods: {
+    tagCompute(){
+      let activeTagIDs = []
+      for(const tag in this.activeTags){
+        let tID = this.activeTags[tag].id
+        activeTagIDs.push(tID)
+
+        if(!this.myTags.includes(tID)){
+          this.myTags.push(tID)
+        }
+      }
+      this.myInitialTags = activeTagIDs.slice(0)
+    },
     sendTags(){
-      this.$emit('tag', this.myTags)
+      let tags = []
+      if(this.myTags.length>0){
+        tags = this.myTags.slice(0)
+      }
+      this.$emit('tag', tags)
     },
     doTagChange(t, e){
       let includes = this.myTags.includes(t.id)
