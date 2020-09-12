@@ -85,7 +85,7 @@ export default {
       let formData = new FormData();
       formData.append("image_file", file);
       formData.append('garden', this.$gardenApi.garden)
-      this.axios.post( this.$gardenApi.getPath(this.$gardenApi.imagesPath, undefined, 'api'),
+      this.axios.post( this.$gardenApi.getPath(this.$gardenApi.imagesPath), //, undefined, 'api'
         formData,
         {
           headers: {
