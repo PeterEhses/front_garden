@@ -1,8 +1,8 @@
 <template>
   <div id="donate">
-  <p>Welcome to the garden of tangled data.</p>
+  <p>Welcome to The Garden of Tangled Data.</p>
     <p>Please plant pieces of data.</p>
-    <p>You can also forward emails to <a href="mailto:donate@tangled.garden" target="_blank" rel="noopener noreferrer" @click="movietime">donate@tangled.garden</a> or use the scanner device.</p>
+    <!-- <p>You can also forward emails to <a href="mailto:donate@tangled.garden" target="_blank" rel="noopener noreferrer" @click="movietime">donate@tangled.garden</a> or use the scanner device.</p> -->
     <donation-form @submitted="movietime"/>
 
     <Modal v-if="startplay" noclose fullscreen overflow="hidden">
@@ -18,7 +18,10 @@
             Sorry, your browser doesn't support embedded videos. Continue to "care" from the side menu.
             <br/><br/><br/><br/><br/>
         </video>
-        <p>{{minsremain}}:{{secsremain}}<br/>you'll be redirected in a more poetic way</p>
+        <p>{{minsremain}}:{{secsremain}}<br/>Thank you.
+Please enter The Garden of Tangled Data.<br/>
+Breathe.<br/>
+In a few minutes you will see our green house on your device.</p>
       </div>
 
 
@@ -96,6 +99,7 @@ export default {
 <style lang="scss" scoped>
 
 .video{
+
   top: 1px;
   left: 1px;
   position: relative;
@@ -119,11 +123,13 @@ export default {
   }
   p{
     position: absolute;
+    width: 90%;
     top: 5%;
     left: 50%;
     -webkit-transform: translateX(-50%);// translateY(-50%);
     transform: translateX(-50%);// translateY(-50%);
     padding: .5em 1em;
+    margin: auto;
     border-radius: 12345px;
     border: $outline-weight solid $highlight-default;
     box-sizing: border-box;

@@ -6,7 +6,7 @@
     <input type="file" accept="image/*" id="fileselect" name="fileselect[]"  @change="addFile"  multiple="multiple"/>
     <!-- multiple="multiple" to re-enable multiple file select-->
 
-    <output> {{response}} </output>
+    <output v-if="response.length>0"> {{response}} </output>
 
     <ul class="file-display">
       <li v-for="(file, id) in files" :key="id">
@@ -23,17 +23,28 @@
 <script>
 export default {
   name: "DragDrop",
-  data: function() {
+  data() {
     return{
       files:[],
       hideWarn: true,
-      response: " "
+      response: "",
+      fileLength: 0,
     }
 
   },
   computed: {
     uploadDisabled() {
+
       return this.files.length === 0;
+    }
+  },
+  watch: {
+    files: {
+      deep: true,
+      handler(){
+        this.fileLength = this.files.length
+        this.$emit('fileLength', this.files.length)
+      }
     }
   },
   methods:{
@@ -153,5 +164,9 @@ ul{
 li{
   list-style: none;
   line-break: anywhere;
+}
+
+@media (max-size: 800px){
+
 }
 </style>
