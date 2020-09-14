@@ -5,7 +5,7 @@
       class="footerlink"
     >datenschutz</router-link>
     <router-link
-      to="datenschutz"
+      to="impressum"
       class="footerlink"
     >impressum</router-link>
   </footer>

@@ -123,8 +123,17 @@ const routes = [
   {
     path: '/datenschutz',
     name: 'legal',
-    title: "datenschutz & impressum",
+    title: "datenschutz",
     component: () => import("./components/legal.vue"),
+    meta: {
+        visible: false
+    }
+  },
+  {
+    path: '/impressum',
+    name: 'imprint',
+    title: "impressum",
+    component: () => import("./components/imprint.vue"),
     meta: {
         visible: false
     }
