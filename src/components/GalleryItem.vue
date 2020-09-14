@@ -24,7 +24,7 @@
         :image="image"
         :nameItem="nameItem"
         :tagItem="tagItem"
-        :decayIcon="decayIcon"
+        :decayItem="decayItem"
         :breeding="breeding"
         @breed="$emit('breed', $event)"
         @uploadfeedback="handleNewData"
@@ -87,7 +87,7 @@ export default {
     /**
     * display decay dialog on image modal
     */
-    decayIcon: {
+    decayItem: {
       type: Boolean,
       default: true
     }

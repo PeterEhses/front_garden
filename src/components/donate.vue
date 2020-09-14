@@ -21,7 +21,8 @@
         <p>{{minsremain}}:{{secsremain}}<br/>Thank you.
 Please enter The Garden of Tangled Data.<br/>
 Breathe.<br/>
-In a few minutes you will see our green house on your device.</p>
+<!-- In a few minutes you will see our green house on your device. -->
+</p>
       </div>
 
 
@@ -42,7 +43,7 @@ export default {
   data(){
     return{
       seconds: 0,
-      playtime: 3*60,
+      playtime: 20,
       startseconds: 0,
       startplay: false,
     }

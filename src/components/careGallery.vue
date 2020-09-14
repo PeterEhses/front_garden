@@ -1,11 +1,22 @@
 <template>
   <div class="gallery">
-    <Breeder :images="toBreed" @sendbreed="sendBreed"/>
+    <!-- <Breeder :images="toBreed" @sendbreed="sendBreed"/> -->
     <GalleryFilter :type="requestType" :direction="requestDirection" @typechange="changeRequestType" @directionchange="changeRequestDirection"/>
 
     <div class="ul" v-if="objSize(images) > 0">
-      <GalleryItem v-for="img in images" :key="img.uuid" :image="img" @breed="changeBreed" :tags="tagsJson"/>
-
+      <GalleryItem
+      v-for="img in images"
+      :key="img.uuid"
+      :image="img"
+      @breed="changeBreed"
+      :tags="tagsJson"
+      :nameItem="false"
+      :tagItem="false"
+      :decayItem="false"
+      :breeding="false"
+      />
+      <!--
+       -->
     </div>
     <div class="loader" v-else>
       loading . . .
@@ -16,13 +27,13 @@
 <script>
 
 import GalleryItem from '@/components/GalleryItem.vue'
-import Breeder from '@/components/Breeder.vue'
+// import Breeder from '@/components/Breeder.vue'
 import GalleryFilter from '@/components/GalleryFilter.vue'
 
 export default {
   name:"careGallery",
   components: {
-    Breeder,
+    // Breeder,
     GalleryItem,
     GalleryFilter,
 

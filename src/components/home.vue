@@ -1,8 +1,8 @@
 <template>
 <div id="home">
   <p>The Garden of Tangled Data is a safe space.</p>
-  <p>The data you donate will be processed exclusively in this room.</p>
-  <p>It will not be given to third parties.</p>
+  <p>The data you donate will become part of our community garden.</p>
+  <p>It will decay within the next three days.</p>
   <v-button v-bind:onClick="agreeClick" line>agree & continue</v-button>
 </div>
 </template>

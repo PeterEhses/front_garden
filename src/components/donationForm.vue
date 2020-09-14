@@ -4,7 +4,7 @@
     <h2>Data</h2>
 
     <v-dragdrop ref="dragdrop" @uploadsuccess="$emit('submitted')" @fileLength="dataSet">tap here to donate images <legend class="small drag">Your device will ask you for permission to access your gallery.</legend></v-dragdrop>
-    <legend class="small padbottom" v-if="fileLength > 0">after reviewing your data, plant it as a new seed</legend>
+    <!-- <legend class="small padbottom" v-if="fileLength > 0">after reviewing your data, plant it as a new seed</legend> -->
     <v-button v-bind:onClick="submitForm" bottomright line :disabled="fileLength == 0">plant this seed and advance</v-button>
   </form>
 
