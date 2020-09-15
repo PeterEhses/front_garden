@@ -21,9 +21,8 @@ export default {
   },
   computed: {
     cheatHome(){
-      console.log(this.route, this.activeroute.split('/')[1]  )
       if(this.route.name == 'home' && this.activeroute.split('/')[1] == 'donate' ){
-        console.log("hi")
+
         return true
       }
       return false

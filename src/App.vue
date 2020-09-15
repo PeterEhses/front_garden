@@ -22,13 +22,13 @@ export default {
   Footer
 },
 watch:{
-    // $route (){
-    //     this.$refs.menu.close();
-    //     let element = document.getElementById("popout");
-    //     if (element !== null) {
-    //       element.scrollTo(0,0);
-    //     }
-    // }
+    $route (){
+        this.$refs.menu.close();
+        let element = document.getElementById("popout");
+        if (element !== null) {
+          element.scrollTo(0,0);
+        }
+    }
 }
 }
 </script>
