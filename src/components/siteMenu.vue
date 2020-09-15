@@ -46,7 +46,9 @@ export default {
   computed: {
     activerouteStart(){
       let str = this.activeroute;
-      return str.split("/")[1]
+      let retStr = str.split("/")[1]
+      if(retStr == "donate") retStr = "home";
+      return retStr
     },
 
     routes() {

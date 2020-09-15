@@ -68,7 +68,7 @@ const routes = [
   {
     path: '/home',
     name: 'home',
-    title: "home",
+    title: "donate",
     component: () => import("./components/home.vue"),
     meta: {
         visible: true
@@ -80,7 +80,7 @@ const routes = [
     title: "donate",
     component: () => import("./components/donate.vue"),
     meta: {
-        visible: true
+        visible: false
       }
   },
   {

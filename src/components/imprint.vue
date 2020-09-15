@@ -1,68 +1,38 @@
 <template>
 <div class="legal">
   <router-link to="./">Home</router-link>
-<h2><strong>Datenschutzerklärung</strong></h2>
-<p>Verantwortlich
-im Sinne der Datenschutzgesetzes:</p>
-<p>Chris
-Kondek<br>
-Ruppiner Str. 45<br>
-10115 Berlin</p>
-<p><strong>Erfassung
-von Daten</strong></p>
-<p>Während
-Sie auf unsere Webseiten zugreifen, erfassen wir automatisch Daten
-von allgemeiner Natur. Diese Daten (Server-Logfiles) umfassen zum
-Beispiel die Art ihres Browsers, ihr Betriebssystem, den Domainnamen
-Ihres Internetanbieters sowie weitere ähnliche allgemeine Daten.
-Diese Daten sind absolut Personen unabhängig und werden genutzt,
-um Ihnen die Webseiten korrekt darzustellen und werden bei jeder
-Nutzung des Internets abgerufen. Die absolut anonymen Daten werden
-statistisch ausgewertet um unseren Service für Sie zu
-verbessern.</p>
-<p><strong>Kontaktformular</strong></p>
-<p>Wenn Sie
-uns über unsere Kontaktseite kontaktieren oder uns eine E-Mail
-schicken, werden die entsprechenden Daten zur Bearbeitung
-gespeichert.</p>
-<p class="msonormal"><strong>Löschung
-oder Sperrung von Daten</strong></p>
-<p>Ihre
-persönlichen Daten werden nur so lange gespeichert, wie dies
-absolut notwendig ist um die angegebenen Dienste zu leisten und es
-vom Gesetz vorgeschrieben ist. Nach Ablauf dieser Fristen werden die
-persönlichen Daten der Nutzer regelmäßig gesperrt
-oder gelöscht.</p>
-<p>Daten,
-die von uns erfasst werden, werden niemals ohne Ihre Einwilligung an
-Daten an Dritte weitergegeben oder mit personenbezogenen Daten
-verknüpft.</p>
-<p><strong>Auskunft,
-Berichtigung, Sperre, Löschung und Widerspruch</strong></p>
-<p>Sie
-können zu jedem Zeitpunkt Informationen über Ihre bei uns
-gespeicherten Daten erbitten. Diese können auch berichtigt,
-gesperrt oder, sofern die vorgeschriebene Zeiträume der
-Datenspeicherung zur Geschäftsabwicklung abgelaufen sind,
-gelöscht werden. Unser Datenschutzmitarbeiter hilft Ihnen bei
-allen entsprechenden Fragen. Seine Kontaktdaten finden Sie weiter
-unten.</p>
-<p>Gesperrte
-Daten werden in einer speziellen Sperrdatei zu Kontrollzwecken
-verwahrt. Wenn die gesetzliche Archivierungsverpflichtung abgelaufen
-ist, können Sie auch die Löschung der Daten verlangen.
-Innerhalb der Archivierungsverpflichtung können wir Ihre Daten
-auf Wunsch sperren.</p>
-<p>Änderungen
-oder Widerruf von Einwilligungen können durch eine Mitteilung an
-uns vorgenommen werden. Dies ist auch für zukünftige
-Aktionen möglich.</p>
-<p><strong>Kontakt
-zum Datenschutzmitarbeiter</strong></p>
-<p>Für
-Fragen zum Datenschutz schicken Sie uns bitte eine Nachricht an
-ckondek@yahoo.com mit dem Betreff „Datenschutz“.</p>
-<p>&nbsp;</p>
+  <div class='impressum'><h2><strong>Impressum</strong></h2><p>Angaben gemäß § 5 TMG</p><p>Chris Kondek <br>
+  Ruppiner Str. 45<br>
+
+  10115 Berlin <br>
+
+  </p><p> <strong>Vertreten durch: </strong><br>
+
+  Chris Kondek<br>
+
+  </p><p><strong>Kontakt:</strong> <br>
+
+  Telefon: 0170-9036916<br>
+
+  E-Mail: <a href='mailto:ckondek@yahoo.com'>ckondek@yahoo.com</a><br></p><p>
+
+  <strong>Haftungsausschluss: </strong><br><br><strong>Haftung für Inhalte</strong><br><br>
+
+  Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.<br><br><strong>Urheberrecht</strong><br><br>
+
+  Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.<br><br><strong>Datenschutz</strong><br><br>
+
+  Die Nutzung unserer Webseite ist in der Regel ohne Angabe personenbezogener Daten möglich. Soweit auf unseren Seiten personenbezogene Daten (beispielsweise Name, Anschrift oder eMail-Adressen) erhoben werden, erfolgt dies, soweit möglich, stets auf freiwilliger Basis. Diese Daten werden ohne Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben. <br>
+
+  Wir weisen darauf hin, dass die Datenübertragung im Internet (z.B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich. <br>
+
+  Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten durch Dritte zur Übersendung von nicht ausdrücklich angeforderter Werbung und Informationsmaterialien wird hiermit ausdrücklich widersprochen. Die Betreiber der Seiten behalten sich ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-Mails, vor.<br>
+
+  </p><br>
+
+  Impressum vom <a href="https://www.impressum-generator.de">Impressum Generator</a> der <a href="https://www.kanzlei-hasselbach.de/">Kanzlei Hasselbach, Rechtsanwälte für Arbeitsrecht und Familienrecht</a>
+
+   </div>
 <router-link to="./">Home</router-link>
 </div>
 </template>

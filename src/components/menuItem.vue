@@ -2,7 +2,7 @@
       <router-link v-if="isVisible"
         exact-active-class="text-success"
         :to="{name: route.name}"
-        class="nav-link"
+        :class="['nav-link', cheatHome ? 'text-success' : '']"
       >{{name}}</router-link>
 </template>
 
@@ -14,7 +14,20 @@ export default {
       type: Object
     }
   },
+  data(){
+    return{
+      activeroute: this.$router.currentRoute.path
+    }
+  },
   computed: {
+    cheatHome(){
+      console.log(this.route, this.activeroute.split('/')[1]  )
+      if(this.route.name == 'home' && this.activeroute.split('/')[1] == 'donate' ){
+        console.log("hi")
+        return true
+      }
+      return false
+    },
     isVisible() {
       if (
         this.route.meta &&
@@ -27,6 +40,11 @@ export default {
     name() {
       return this.route.title;
     }
-  }
+  },
+  watch: {
+    $route(){
+      this.activeroute = this.$router.currentRoute.path
+    }
+  },
 };
 </script>
